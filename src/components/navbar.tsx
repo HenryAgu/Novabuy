@@ -35,7 +35,7 @@ const navMenu: NavMenu[] = [
 
 const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between py-6 px-24">
+    <nav className="flex items-center justify-between py-6 px-5 lg:px-24">
       <Image
         src="/icons/Logo.svg"
         alt="Logo"

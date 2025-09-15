@@ -3,7 +3,7 @@ import React from "react";
 
 const Carousel = () => {
   return (
-    <section className="overflow-hidden whitespace-nowrap pb-30">
+    <section className="overflow-hidden whitespace-nowrap pb-15">
       <div className="flex animate-marquee gap-x-20">
         <Image
           src="/images/marquee.webp"

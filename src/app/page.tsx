@@ -1,6 +1,8 @@
 "use client";
 import Carousel from "@/components/home/carousel";
 import Hero from "@/components/home/hero";
+import TrendingProducts from "@/components/home/trending-products";
+import WhoFor from "@/components/home/who-for";
 import Loading from "@/components/loading";
 import Navbar from "@/components/navbar";
 import { useEffect, useState } from "react";
@@ -25,6 +27,8 @@ export default function Home() {
       <div className="min-h-screen">
         <Hero />
         <Carousel />
+        <WhoFor />
+        <TrendingProducts/>
       </div>
     </main>
   );

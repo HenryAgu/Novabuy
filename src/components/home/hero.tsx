@@ -3,7 +3,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <section className="px-24 py-30 w-full">
+    <section className="px-5 lg:px-24 py-10 lg:py-30 w-full">
       <Image
         src="/images/Hero.webp"
         alt="hero_image"
