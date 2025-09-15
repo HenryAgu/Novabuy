@@ -1,4 +1,5 @@
 "use client";
+import Carousel from "@/components/home/carousel";
 import Hero from "@/components/home/hero";
 import Loading from "@/components/loading";
 import Navbar from "@/components/navbar";
@@ -21,7 +22,10 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <Hero />
+      <div className="min-h-screen">
+        <Hero />
+        <Carousel />
+      </div>
     </main>
   );
 }

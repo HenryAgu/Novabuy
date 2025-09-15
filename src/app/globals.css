@@ -21,6 +21,23 @@
   }
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%); /* move left by half since 2 images */
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 50s linear infinite;
+}
+
+
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
