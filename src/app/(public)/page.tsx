@@ -1,7 +1,10 @@
 "use client";
+import Footer from "@/components/footer";
 import Carousel from "@/components/home/carousel";
 import FeaturedProducts from "@/components/home/featured-products";
 import Hero from "@/components/home/hero";
+import NewProducts from "@/components/home/new-products";
+import SpecialOffers from "@/components/home/special-offers";
 import TrendingProducts from "@/components/home/trending-products";
 import WhoFor from "@/components/home/who-for";
 import Loading from "@/components/loading";
@@ -29,9 +32,12 @@ export default function Home() {
         <Hero />
         <Carousel />
         <WhoFor />
-        <TrendingProducts/>
-        <FeaturedProducts/>
+        <TrendingProducts />
+        <FeaturedProducts />
+        <NewProducts />
+        <SpecialOffers />
       </div>
+      <Footer />
     </main>
   );
 }

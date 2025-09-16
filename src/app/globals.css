@@ -8,7 +8,8 @@
   --color-foreground: var(--foreground);
   --color-neutral-50: #e7e7e7;
   --color-neutral-500: #121212;
-  --color-neutral-300:#606060;
+  --color-neutral-300: #606060;
+  --color-primary-500: #635ef7;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -128,6 +129,28 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* hide scrollbar but keep scrolling */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* smooth momentum on iOS */
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* optional: snap behavior */
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+}
+.scroll-snap-start {
+  scroll-snap-align: start;
 }
 
 @layer base {

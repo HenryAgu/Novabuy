@@ -6,9 +6,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import Image from "next/image";
-import Link from "next/link";
 import { ProductCard } from "../types";
+import ProductCardItem from "../product-card-item";
 
 const products: ProductCard[] = [
   {
@@ -56,9 +55,8 @@ const TrendingProducts = () => {
         opts={{
           align: "start",
         }}
-        className="w-full mr-10"
+        className="w-full"
       >
-        {" "}
         <div className="flex items-center justify-between mb-8">
           <p className="text-black font-bold text-[26px] leading-[150%]">
             TRENDING PRODUCTS
@@ -72,26 +70,7 @@ const TrendingProducts = () => {
           <CarouselContent className="">
             {products.map((item, index) => (
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <div className="flex flex-col gap-y-4">
-                  <Image
-                    src={item.image}
-                    alt="image"
-                    width={409}
-                    height={437}
-                    className="aspect-[409/437] object-cover w-full"
-                  />
-                  <div className="flex flex-col gap-y-[7px]">
-                    <Link
-                      href={item.link}
-                      className="capitalize font-semibold text-lg text-black"
-                    >
-                      {item.name}
-                    </Link>
-                    <span className="text-neutral-300 text-base font-semibold">
-                      $ {item.price?.toLocaleString()}
-                    </span>
-                  </div>
-                </div>
+                <ProductCardItem item={item} />
               </CarouselItem>
             ))}
           </CarouselContent>
