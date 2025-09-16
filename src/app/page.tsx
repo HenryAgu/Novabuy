@@ -1,5 +1,6 @@
 "use client";
 import Carousel from "@/components/home/carousel";
+import FeaturedProducts from "@/components/home/featured-products";
 import Hero from "@/components/home/hero";
 import TrendingProducts from "@/components/home/trending-products";
 import WhoFor from "@/components/home/who-for";
@@ -29,6 +30,7 @@ export default function Home() {
         <Carousel />
         <WhoFor />
         <TrendingProducts/>
+        <FeaturedProducts/>
       </div>
     </main>
   );

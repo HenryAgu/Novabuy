@@ -1,12 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
-interface ProductCard {
-  name: string;
-  image: string;
-  link: string;
-}
+import { ProductCard } from "../types";
 
 const products: ProductCard[] = [
   {
@@ -34,7 +29,7 @@ const WhoFor = () => {
       </p>
       <div className="grid gap-2.5 grid-cols-3">
         {products.map((item) => (
-          <div className="flex flex-col gap-y-4">
+          <div className="flex flex-col gap-y-4" key={item.name}>
             <Image
               src={item.image}
               alt="image"
