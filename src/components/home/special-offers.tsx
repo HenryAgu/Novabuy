@@ -55,7 +55,7 @@ const products: ProductCard[] = [
 
 const SpecialOffers = () => {
   return (
-    <section className="lg:pl-24 lg:py-15 px-5 py-5 flex flex-col gap-y-8">
+    <section className="lg:pl-24 lg:py-15 pl-5 py-5 flex flex-col gap-y-8">
       <p className="text-black font-bold text-[26px] leading-[150%]">
         SPECIAL OFFERS
       </p>
