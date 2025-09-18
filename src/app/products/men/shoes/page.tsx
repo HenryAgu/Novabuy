@@ -105,6 +105,9 @@ const ShoePage = () => {
           <ProductCardItem item={item} key={index} />
         ))}
       </div>
+      <div className="flex justify-center">
+        <button className="uppercase ">Load More</button>
+      </div>
     </main>
   );
 };
