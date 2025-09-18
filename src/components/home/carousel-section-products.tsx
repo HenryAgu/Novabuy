@@ -9,46 +9,12 @@ import {
 import { ProductCard } from "../types";
 import ProductCardItem from "../product-card-item";
 
-const products: ProductCard[] = [
-  {
-    name: "men",
-    image: "/images/item4.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "women",
-    image: "/images/item5.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "Kids",
-    image: "/images/item6.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "men",
-    image: "/images/item3.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "women",
-    image: "/images/item5.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "Kids",
-    image: "/images/item4.png",
-    link: "",
-    price: 140500,
-  },
-];
+interface CarouselSectionProps {
+  title: string;
+  products: ProductCard[];
+}
 
-const TrendingProducts = () => {
+const CarouselSectionProducts = ({ title, products }: CarouselSectionProps) => {
   return (
     <section className="lg:px-24 lg:py-15 px-5 py-8 flex flex-col gap-y-4 lg:gap-y-8">
       <Carousel
@@ -58,8 +24,8 @@ const TrendingProducts = () => {
         className="w-full"
       >
         <div className="flex items-center justify-between mb-4 lg:mb-8">
-          <p className="text-black font-bold text-lg lg:text-[26px] lg:leading-[150%]">
-            TRENDING PRODUCTS
+          <p className="text-black font-bold text-lg lg:text-[26px] lg:leading-[150%] uppercase">
+            {title}
           </p>
           <div className="flex items-center gap-4 ">
             <CarouselPrevious className=" bg-[#E2E2E2] lg:h-[54px] lg:w-[54px]" />
@@ -80,4 +46,4 @@ const TrendingProducts = () => {
   );
 };
 
-export default TrendingProducts;
+export default CarouselSectionProducts;

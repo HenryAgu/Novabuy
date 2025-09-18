@@ -20,7 +20,7 @@ const navMenu: NavMenu[] = [
   },
   {
     name: "Men",
-    link: "/men",
+    link: "/products/men",
   },
   {
     name: "Women",

@@ -77,24 +77,24 @@ const Footer = () => {
   return (
     <footer className="lg:px-24 lg:pt-20.5 px-5 py-10 bg-primary-500 flex flex-col gap-y-10">
       <div className="flex lg:flex-row flex-col gap-y-15 gap-x-20 text-white">
-        <div className="basis-[70%] flex lg:flex-row flex-col gap-y-10 lg:justify-between ">
-          <div className="flex flex-col gap-y-5">
+        <div className="basis-full lg:basis-[70%] flex lg:flex-row flex-col gap-y-10 lg:justify-between ">
+          <div className="flex flex-col gap-y-2.5 lg:gap-y-5">
             <p className="font-bold text-lg leading-[150%]">Get Help</p>
-            <div className="flex flex-col gap-y-4">
+            <div className="flex flex-col gap-y-2 lg:gap-y-4">
               {getHelp.map((item) => (
                 <Link
                   href={item.link}
                   key={item.title}
-                  className={`${rubik.className} text-base font-normal`}
+                  className={`${rubik.className} text-sm lg:text-base font-normal`}
                 >
                   {item.title}
                 </Link>
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-y-5">
-            <p className="font-bold text-lg leading-[150%]">About Novabuy</p>
-            <div className="flex flex-col gap-y-4">
+          <div className="flex flex-col gap-y-2.5 lg:gap-y-5">
+            <p className="font-bold text-base lg:text-lg lg:leading-[150%]">About Novabuy</p>
+            <div className="flex flex-col gap-y-2 lg:gap-y-4">
               {aboutNovabuy.map((item) => (
                 <Link
                   href={item.link}
@@ -106,8 +106,8 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-y-5">
-            <p className="font-bold text-lg leading-[150%]">Store Locator</p>
+          <div className="flex flex-col gap-y-2.5 lg:gap-y-5">
+            <p className="font-bold lg:text-lg lg:leading-[150%] text-base">Store Locator</p>
             <div className="flex flex-col gap-y-4">
               {storeLocator.map((item) => (
                 <Link
@@ -120,8 +120,8 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-y-5">
-            <p className="font-bold text-lg leading-[150%]">Legal</p>
+          <div className="flex flex-col gap-y-2.5 lg:gap-y-5">
+            <p className="font-bold lg:text-lg lg:leading-[150%] text-base">Legal</p>
             <div className="flex flex-col gap-y-4">
               {legal.map((item) => (
                 <Link
@@ -135,8 +135,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="basis-[30%] flex flex-col gap-y-10">
-          <div className="flex items-center justify-between gap-x-10">
+        <div className="basis-full lg:basis-[30%] flex flex-col gap-y-8 lg:gap-y-10">
+          <div className="flex items-center justify-center lg:justify-between gap-x-10">
             {socialMenus.map((item) => (
               <Link href={item.link} key={item.alt}>
                 <Image
@@ -144,24 +144,24 @@ const Footer = () => {
                   alt={item.alt}
                   width={52}
                   height={52}
-                  className="aspect-square"
+                  className="aspect-square w-10 h-10 lg:w-[52px] lg:h-[52px]"
                 />
               </Link>
             ))}
           </div>
-          <div className="flex flex-col gap-y-6">
-            <p className="font-bold text-xl leading-[150%]">
+          <div className="flex flex-col gap-y-3 lg:gap-y-6">
+            <p className="font-bold lg:text-xl lg:leading-[150%] text-lg">
               SIGN UP FOR NEWSLETTER
             </p>
             <div className="flex items-center gap-x-10 justify-between py-3.5 px-5 w-full border border-white rounded-[50px]">
               <input
                 type="text"
                 placeholder="Enter Email Address"
-                className="text-[13px] font-normal leading-[150%] w-full focus-visible:transparent outline-transparent"
+                className="lg:text-[13px] font-normal text-xs lg:leading-[150%] w-full focus-visible:transparent outline-transparent"
               />
               <ArrowLongRight />
             </div>
-            <p className="text-sm font-normal">
+            <p className="text-xs lg:text-sm font-normal">
               By signing up you agree to our{" "}
               <Link href="" className="font-semibold underline">
                 Terms
