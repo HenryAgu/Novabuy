@@ -75,9 +75,9 @@ const legal: FooterMenu[] = [
 
 const Footer = () => {
   return (
-    <footer className="lg:px-24 lg:pt-20.5 px-5 py-5 bg-primary-500 flex flex-col gap-y-10">
-      <div className="flex gap-x-20 text-white">
-        <div className="basis-[70%] flex justify-between ">
+    <footer className="lg:px-24 lg:pt-20.5 px-5 py-10 bg-primary-500 flex flex-col gap-y-10">
+      <div className="flex lg:flex-row flex-col gap-y-15 gap-x-20 text-white">
+        <div className="basis-[70%] flex lg:flex-row flex-col gap-y-10 lg:justify-between ">
           <div className="flex flex-col gap-y-5">
             <p className="font-bold text-lg leading-[150%]">Get Help</p>
             <div className="flex flex-col gap-y-4">

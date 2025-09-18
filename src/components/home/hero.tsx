@@ -11,34 +11,34 @@ const Hero = () => {
         height={437}
         className="aspect-[1199/437] mx-auto"
       />
-      <div className="mt-20">
-        <table className="min-w-[323px] border-y border-gray-200 text-sm text-left">
+      <div className="mt-10 lg:mt-20">
+        <table className="min-w-[280px] lg:min-w-[323px] border-y border-gray-200 text-sm text-left">
           <tbody>
             <tr className="border-b border-b-neutral-50">
-              <td className="py-3.5 pr-10 neutral-100 text-sm font-normal">
+              <td className="py-1.5 lg:py-3.5 pr-5 lg:pr-10 neutral-100 text-xs lg:text-sm font-normal">
                 Product Name
               </td>
-              <td className="py-3.5 font-semibold text-neutral-500 text-base">
+              <td className="py-1.5 lg:py-3.5 font-semibold text-neutral-500 text-sm lg:text-base">
                 NOVASTRIDES WEAR
               </td>
             </tr>
             <tr className="border-b border-b-neutral-50">
-              <td className="py-3.5 neutral-100 text-sm font-normal">
+              <td className="py-1.5 lg:py-3.5 pr-5 lg:pr-10 neutral-100 text-xs lg:text-sm font-normal">
                 Colour Option
               </td>
-              <td className="py-3.5 text-neutral-500 text-base font-semibold">White, Black, Pink</td>
+              <td className="py-1.5 lg:py-3.5 font-semibold text-neutral-500 text-sm lg:text-base">White, Black, Pink</td>
             </tr>
             <tr className="border-b border-b-neutral-50">
-              <td className="py-3.5 neutral-100 text-sm font-normal">
+              <td className="py-1.5 lg:py-3.5 pr-5 lg:pr-10 neutral-100 text-xs lg:text-sm font-normal">
                 Available Sizes
               </td>
-              <td className="py-3.5 text-neutral-500 text-base font-semibold">7, 8, 9, 10, 11, 12, 13</td>
+              <td className="py-1.5 lg:py-3.5 font-semibold text-neutral-500 text-sm lg:text-base">7, 8, 9, 10, 11, 12, 13</td>
             </tr>
             <tr>
-              <td className="py-3.5 neutral-100 text-sm font-normal">
+              <td className="py-1.5 lg:py-3.5 pr-5 lg:pr-10 neutral-100 text-xs lg:text-sm font-normal">
                 Prices
               </td>
-              <td className="py-3.5 font-semibold text-neutral-500 text-base">$135.00</td>
+              <td className="py-1.5 lg:py-3.5 font-semibold text-neutral-500 text-sm lg:text-base">$135.00</td>
             </tr>
           </tbody>
         </table>

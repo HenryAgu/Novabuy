@@ -10,8 +10,8 @@ const rubik = Rubik({
 
 const FeaturedProducts = () => {
   return (
-    <section className="lg:px-24 lg:py-15 px-5 py-5 flex flex-col gap-y-8">
-      <p className="text-black font-bold text-[26px] leading-[150%]">
+    <section className="lg:px-24 lg:py-15 px-5 py-8 flex flex-col gap-y-4 lg:gap-y-8">
+      <p className="text-black font-bold text-lg lg:text-[26px] lg:leading-[150%]">
         FEATURED PRODUCTS
       </p>
       <div className="flex flex-col gap-y-[15px]">
@@ -21,40 +21,40 @@ const FeaturedProducts = () => {
             alt="product"
             width={1248}
             height={681}
-            className="w-full h-[681px] object-cover"
+            className="w-full h-[350px] lg:h-[681px] object-cover"
           />
-          <div className="absolute left-10 top-8.5 flex flex-col gap-y-4.5 text-white">
-            <p className="font-bold text-[29px] leading-[150%]">
+          <div className="absolute left-5 lg:left-10 top-4 lg:top-8.5 flex flex-col gap-y-1.5 lg:gap-y-4.5 text-white">
+            <p className="font-bold text-xl lg:text-[29px] lg:leading-[150%]">
               NOVABUY NEW EDITION
             </p>
-            <p className={`${rubik.className} text-lg font-normal`}>
+            <p className={`${rubik.className} text-base lg:text-lg font-normal`}>
               Redefining Style with Every Step
             </p>
             <Link
               href="/"
-              className={`${rubik.className} text-base font-normal`}
+              className={`${rubik.className} text-sm lg:text-base font-normal`}
             >
               Explore
             </Link>
           </div>
         </div>
-        <div className="flex gap-[15px]">
+        <div className="flex lg:flex-row flex-col gap-[15px]">
           <div className="relative basis-[50%]">
             <Image
               src="/images/product2.png"
               alt="product"
               width={1248}
               height={585}
-              className="w-full h-[585px] object-cover"
+              className="w-full h-[350px] lg:h-[585px] object-cover"
             />
-            <div className="absolute left-10 top-8.5 flex flex-col gap-y-4.5 text-white">
-              <p className="font-bold text-[29px] leading-[150%]">FOR HIM</p>
-              <p className={`${rubik.className} text-lg font-normal`}>
+            <div className="absolute left-5 lg:left-10 top-4 lg:top-8.5 flex flex-col gap-y-1.5 lg:gap-y-4.5 text-white">
+              <p className="font-bold text-xl lg:text-[29px] lg:leading-[150%]">FOR HIM</p>
+              <p className={`${rubik.className} text-base lg:text-lg font-normal`}>
                 Focused on Elevating His Style
               </p>
               <Link
                 href="/"
-                className={`${rubik.className} text-base font-normal`}
+                className={`${rubik.className} text-sm lg:text-base font-normal`}
               >
                 Explore
               </Link>
@@ -66,10 +66,10 @@ const FeaturedProducts = () => {
               alt="product"
               width={1248}
               height={585}
-              className="w-full h-[585px] object-cover"
+              className="w-full h-[350px] lg:h-[585px] object-cover"
             />
-            <div className="absolute left-10 top-8.5 flex flex-col gap-y-4.5 text-white">
-              <p className="font-bold text-[29px] leading-[150%]">FOR HER</p>
+            <div className="absolute left-5 lg:left-10 top-4 lg:top-8.5 flex flex-col gap-y-1.5 lg:gap-y-4.5 text-white">
+              <p className="font-bold text-xl lg:text-[29px] lg:leading-[150%]">FOR HER</p>
               <p className={`${rubik.className} text-lg font-normal`}>
                 Focused on Empowering her Elegance
               </p>

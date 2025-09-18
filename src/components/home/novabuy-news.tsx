@@ -57,9 +57,9 @@ const news: News[] = [
 
 const NovabuyNews = () => {
   return (
-    <section className="lg:px-24 lg:py-15 lg:pb-30 px-5 py-5 flex gap-x-6">
+    <section className="lg:px-24 lg:py-15 lg:pb-30 px-5 py-8 flex lg:flex-row flex-col gap-y-3 lg:gap-x-6">
       <div className="">
-        <p className="[writing-mode:vertical-lr] rotate-180 text-neutral-150 font-bold leading-[150%] text-[56px]">
+        <p className="lg:[writing-mode:vertical-lr] lg:rotate-180 text-neutral-150 font-bold lg:leading-[150%] lg:text-[56px] text-4xl">
           NOVABUY NEWS
         </p>
       </div>
@@ -67,42 +67,40 @@ const NovabuyNews = () => {
         opts={{
           align: "start",
           loop: true,
-        }} plugins={[
-             Autoplay({
-          delay: 2000,
-        }),
+        }}
+        plugins={[
+          Autoplay({
+            delay: 2000,
+          }),
         ]}
       >
         <CarouselContent className="basis-[100%] ">
           {news.map((item, index) => (
             <CarouselItem
               key={index}
-              className="flex gap-x-20.5 lg:basis-[100%]"
+              className="flex lg:flex-row flex-col lg:gap-x-20.5 lg:basis-[100%] h-auto"
             >
-              <div className="basis-[50%] max-w-[507px] w-full shrink-0">
+              <div className="basis-full lg:basis-[50%] max-w-full lg:max-w-[507px] w-full shrink-0">
                 <Image
                   src={item.image}
                   alt="image"
                   width={507}
                   height={490}
-                  className="aspect-[507/490] h-[490px] object-cover"
+                  className="aspect-[507/490] h-[350px] lg:h-[490px] object-cover"
                 />
               </div>
-              <div className="flex-1 flex flex-col gap-y-6 w-0">
-                <p className=" text-black font-bold text-[26px] leading-[150%]">
+              <div className="flex-1 hidden lg:flex flex-col gap-y-6 w-full lg:w-0">
+                <p className="text-black font-bold text-[20px] lg:text-[26px] leading-[150%]">
                   THE ECHELON CRAFT: NOVABUY X PRADA X NIKE COLLAB
                 </p>
                 <div className="flex flex-col gap-y-5">
-                  <p className="text-neutral-400 font-normal text-base leading-[150%]">
+                  <p className="text-neutral-400 font-normal text-sm lg:text-base leading-[150%]">
                     In a groundbreaking fusion of fashion, luxury, and
                     athleticism, three giants in their respective domains have
                     joined forces to create a fashion collaboration like no
                     other. NovaBuy, Prada, and Nike have embarked on a journey
                     to redefine the boundaries of style, pushing the envelope of
-                    creativity and innovation. In a world where fashion is more
-                    than just clothing, where individual expression knows no
-                    bounds, this collaboration opens doors to a realm where
-                    style and functionality coexist.
+                    creativity and innovation...
                   </p>
                   <Link
                     href=""
@@ -115,7 +113,7 @@ const NovabuyNews = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <div className="flex items-center gap-4 mt-10">
+        <div className="flex items-center gap-4 mt-5 lg:mt-10">
           <CarouselPrevious className=" bg-[#E2E2E2] h-[54px] w-[54px]" />
           <CarouselNext className="bg-[#E2E2E2] h-[54px] w-[54px]" />
         </div>

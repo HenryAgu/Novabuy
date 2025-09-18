@@ -81,10 +81,17 @@ export default Navbar;
 
 const MobileMenu = () => {
   return (
-    <section className="p-5 flex flex-col gap-y-6">
-      <SheetClose>
+    <section className="p-5 flex flex-col gap-y-6 pb-10">
+      <SheetClose className="flex justify-end">
         <CloseIcon />
       </SheetClose>
+      <nav>
+        <ul className="flex flex-col gap-6 text-lg">
+          {navMenu.map((item) => (
+            <Link href={item.link}>{item.name}</Link>
+          ))}
+        </ul>
+      </nav>
     </section>
   );
 };
