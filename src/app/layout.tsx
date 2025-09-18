@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     title: "NovaBuy – Seamless & Authentic Online Shopping",
     description:
       "Shop with confidence on NovaBuy. Enjoy secure payments, detailed product info, and fast delivery across Nigeria.",
-    url: "https://novabuy-sm1t.vercel.app", // replace with your actual domain
+    url: "https://novabuy-sm1t.vercel.app", 
     siteName: "NovaBuy",
     images: [
       {
-        url: "/images/og-image.png", // add your Open Graph image here
+        url: "/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "NovaBuy – Seamless & Authentic Online Shopping",
