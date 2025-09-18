@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "NovaBuy",
     images: [
       {
-        url: "/images/og-image.png",
+        url: "/images/open-graph.png",
         width: 1200,
         height: 630,
         alt: "NovaBuy – Seamless & Authentic Online Shopping",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     title: "NovaBuy – Seamless & Authentic Online Shopping",
     description:
       "Fast, reliable, and secure online shopping experience in Nigeria with NovaBuy.",
-    images: ["/images/og-image.png"],
+    images: ["/images/open-graph.png"],
   },
 };
 
