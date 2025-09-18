@@ -19,18 +19,43 @@ const rubik = Rubik({
 const ProductLayout = ({ children }: ProductLayoutProps) => {
   const pathname = usePathname();
 
-  // remove the `/products/` prefix
-  const cleanPath = pathname.replace(/^\/products\//, "");
+  // split path into segments and filter empty ones
+  const segments = pathname.split("/").filter(Boolean);
+
+  // build cumulative links for each segment
+  const breadcrumbs = segments.map((segment, index) => {
+    const href = "/" + segments.slice(0, index + 1).join("/");
+    return { label: segment, href };
+  });
 
   return (
     <main>
       <Navbar />
       <div
-        className={`${rubik.className} lg:px-24 px-5 flex items-center gap-x-[15px]`}
+        className={`${rubik.className} lg:px-24 px-5 flex items-center gap-x-[8px]`}
       >
-        <Link href="/" className=" text-sm font-normal text-neutral-600 hover:underline">Home</Link>
-        <AngleRight />
-        <p className="capitalize text-sm font-normal text-neutral-600">{cleanPath || "Products"}</p>
+        <Link
+          href="/"
+          className="text-sm font-normal text-neutral-600 hover:underline"
+        >
+          Home
+        </Link>
+        {breadcrumbs.map((crumb, index) => (
+          <React.Fragment key={crumb.href}>
+            <AngleRight />
+            {index === breadcrumbs.length - 1 ? (
+              <span className="capitalize text-sm font-normal text-neutral-600">
+                {crumb.label}
+              </span>
+            ) : (
+              <div
+                className="capitalize text-sm font-normal text-neutral-600"
+              >
+                {crumb.label}
+              </div>
+            )}
+          </React.Fragment>
+        ))}
       </div>
       <div className="min-h-screen">{children}</div>
       <Footer />

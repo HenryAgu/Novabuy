@@ -8,7 +8,7 @@ const products: ProductCard[] = [
   {
     name: "shoes",
     image: "/images/men1.png",
-    link: "",
+    link: "/products/men/shoes",
   },
   {
     name: "clothing",
