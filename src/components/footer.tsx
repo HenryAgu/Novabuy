@@ -84,6 +84,7 @@ const Footer = () => {
               {getHelp.map((item) => (
                 <Link
                   href={item.link}
+                  key={item.title}
                   className={`${rubik.className} text-base font-normal`}
                 >
                   {item.title}
@@ -97,6 +98,7 @@ const Footer = () => {
               {aboutNovabuy.map((item) => (
                 <Link
                   href={item.link}
+                  key={item.title}
                   className={`${rubik.className} text-base font-normal`}
                 >
                   {item.title}
@@ -110,6 +112,7 @@ const Footer = () => {
               {storeLocator.map((item) => (
                 <Link
                   href={item.link}
+                    key={item.title}
                   className={`${rubik.className} text-base font-normal`}
                 >
                   {item.title}
@@ -123,6 +126,7 @@ const Footer = () => {
               {legal.map((item) => (
                 <Link
                   href={item.link}
+                  key={item.title}
                   className={`${rubik.className} text-base font-normal`}
                 >
                   {item.title}

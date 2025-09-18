@@ -7,8 +7,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-neutral-50: #e7e7e7;
-  --color-neutral-500: #121212;
+  --color-neutral-150: #B6B6B6;
   --color-neutral-300: #606060;
+  --color-neutral-400: #414141;
+  --color-neutral-500: #121212;
   --color-primary-500: #635ef7;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
