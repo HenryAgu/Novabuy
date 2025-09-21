@@ -16,7 +16,7 @@ const WhoFor = ({title, products}:WhoForProps) => {
       </p>
       <div className="grid gap-5 lg:gap-2.5 grid-cols-1 lg:grid-cols-3">
         {products?.map((item) => (
-          <div className="flex flex-col gap-y-2 lg:gap-y-4" key={item.name}>
+          <Link href="" className="flex flex-col gap-y-2 lg:gap-y-4" key={item.name}>
             <Image
               src={item.image}
               alt="image"
@@ -24,8 +24,8 @@ const WhoFor = ({title, products}:WhoForProps) => {
               height={437}
               className="aspect-[409/437] object-cover w-full"
             />
-            <Link href={item.link} className="capitalize font-semibold text-base lg:text-lg text-black">{item.name}</Link>
-          </div>
+            <p className="capitalize font-semibold text-base lg:text-lg text-black">{item.name}</p>
+          </Link>
         ))}
       </div>
     </section>

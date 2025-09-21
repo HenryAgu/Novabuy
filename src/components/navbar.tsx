@@ -39,13 +39,15 @@ const navMenu: NavMenu[] = [
 const Navbar = () => {
   return (
     <nav className="flex items-center justify-between py-5 lg:py-6 px-5 lg:px-24">
-      <Image
-        src="/icons/Logo.svg"
-        alt="Logo"
-        width={177}
-        height={42}
-        className="w-[120px] h-auto lg:w-[177px] aspect-[177/42]"
-      />
+      <Link href="/">
+        <Image
+          src="/icons/Logo.svg"
+          alt="Logo"
+          width={177}
+          height={42}
+          className="w-[120px] h-auto lg:w-[177px] aspect-[177/42]"
+        />
+      </Link>
 
       <ul className="hidden lg:flex items-center gap-12">
         {navMenu.map((item) => (

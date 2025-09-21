@@ -9,7 +9,7 @@ interface ProductCardProps{
 
 const ProductCardItem = ({item}:ProductCardProps) => {
   return (
-    <div className="flex flex-col gap-y-2 lg:gap-y-4">
+    <Link href={item.link} className="flex flex-col gap-y-2 lg:gap-y-4">
       <Image
         src={item.image}
         alt="image"
@@ -18,17 +18,16 @@ const ProductCardItem = ({item}:ProductCardProps) => {
         className="aspect-[409/437] object-cover w-full"
       />
       <div className="flex flex-col gap-y-[3.5px] lg:gap-y-[7px]">
-        <Link
-          href={item.link}
+        <p
           className="capitalize font-semibold text-base lg:text-lg text-black"
         >
           {item.name}
-        </Link>
+        </p>
         <span className="text-neutral-300 text-sm lg:text-base font-semibold">
           $ {item.price?.toLocaleString()}
         </span>
       </div>
-    </div>
+    </Link>
   );
 };
 

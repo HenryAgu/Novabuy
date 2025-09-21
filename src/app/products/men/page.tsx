@@ -114,7 +114,7 @@ const carouselProducts: ProductCard[] = [
 
 const MenPage = () => {
   return (
-    <main className="lg:pb-10 pb-8">
+    <main className="lg:pb-10 pb-8 ">
       <div className="min-h-screen">
         <WhoFor title="MEN SHOPPING CATEGORIES" products={products} />
         <SwiperProducts title="NEW PRODUCTS" products={swiperProducts} />
