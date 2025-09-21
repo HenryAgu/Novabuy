@@ -106,7 +106,7 @@ const ShoePage = () => {
         ))}
       </div>
       <div className="flex justify-center">
-        <button className="uppercase ">Load More</button>
+        <button className="text-base text-white font-normal bg-primary-500 p-2.5 rounded-[50px]">Load More</button>
       </div>
     </main>
   );
