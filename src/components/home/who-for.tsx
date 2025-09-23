@@ -16,7 +16,7 @@ const WhoFor = ({title, products}:WhoForProps) => {
       </p>
       <div className="grid gap-5 lg:gap-2.5 grid-cols-1 lg:grid-cols-3">
         {products?.map((item) => (
-          <Link href={item.link} className="flex flex-col gap-y-2 lg:gap-y-4" key={item.name}>
+          <Link href={item.link ?? ""} className="flex flex-col gap-y-2 lg:gap-y-4" key={item.name}>
             <Image
               src={item.image}
               alt="image"

@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -30,6 +31,10 @@ const navMenu: NavMenu[] = [
     name: "Kids",
     link: "/kids",
   },
+    {
+    name: "Shoes",
+    link: "/products/shoes",
+  },
   {
     name: "Accessories",
     link: "/accessories",
@@ -38,7 +43,7 @@ const navMenu: NavMenu[] = [
 
 const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between py-5 lg:py-6 px-5 lg:px-24">
+    <nav className="flex items-center justify-between py-5 lg:py-6 px-5 lg:px-24" >
       <Link href="/">
         <Image
           src="/icons/Logo.svg"
@@ -90,7 +95,9 @@ const MobileMenu = () => {
       <nav>
         <ul className="flex flex-col gap-6 text-lg">
           {navMenu.map((item) => (
-            <Link href={item.link}>{item.name}</Link>
+            <li key={item.name}>
+              <Link href={item.link}>{item.name}</Link>
+            </li>
           ))}
         </ul>
       </nav>

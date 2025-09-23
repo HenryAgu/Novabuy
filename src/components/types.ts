@@ -1,6 +1,6 @@
 export interface ProductCard {
   name: string;
   image: string;
-  link: string;
+  link?: string;
   price?: number;
 }

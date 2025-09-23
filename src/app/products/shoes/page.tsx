@@ -1,6 +1,9 @@
 "use client";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import ProductCardItem from "@/components/product-card-item";
 import { ProductCard } from "@/components/types";
+import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Rubik } from "next/font/google";
 import React, { useState } from "react";
@@ -86,7 +89,7 @@ const swiperProducts: ProductCard[] = [
 ];
 
 const ShoePage = () => {
-  const [renderedShoes, setRenderedShoes] = useState<number>(4);
+  const [renderedShoes, setRenderedShoes] = useState<number>(8);
 
   const renderMoreShoes = () => {
     setRenderedShoes((prev) => prev + 4);
@@ -117,12 +120,12 @@ const ShoePage = () => {
       </div>
       {renderedShoes < swiperProducts.length && (
         <div className="flex justify-center">
-          <button
-            className="text-base text-white font-normal bg-primary-500 py-2.5 px-5 rounded-[50px] cursor-pointer"
+          <Button
+            className="text-base text-white font-normal bg-primary-500 p-5 rounded-[50px] cursor-pointer"
             onClick={renderMoreShoes}
           >
             Load More
-          </button>
+          </Button>
         </div>
       )}
     </main>
