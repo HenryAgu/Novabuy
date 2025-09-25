@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Rubik } from "next/font/google";
-import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 
 const rubik = Rubik({
@@ -31,12 +31,22 @@ const sizes = [
   { id: crypto.randomUUID(), size: 47.5 },
 ];
 
+const productImages: string[] = [
+  "/images/shoe1.png",
+  "/images/shoe2.png",
+  "/images/shoe3.png",
+];
+
 const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
 
   return (
-    <main className="min-h-screen flex lg:flex-row flex-col gap-x-15 pr-5 pl-5 lg:pl-0 lg:pr-24 pb-14 lg:pb-28">
-      <div className="basis-[50%] bg-black">1</div>
+    <main className="min-h-screen flex lg:flex-row flex-col gap-15 pr-5 pl-5 lg:pl-0 lg:pr-24 pb-14 lg:pb-28">
+      <div className="basis-[50%] flex flex-col gap-y-5">
+        {productImages.map((image,index) => (
+          <Image src={image} alt="images" width={658} height={875} className="w-full h-[530px] lg:h-[875px] object-cover" key={index}/>
+        ))}
+      </div>
       <div className="basis-[50%] lg:p-2.5 flex flex-col gap-y-3.5 lg:gap-y-7">
         <div className="flex flex-col gap-y-3">
           <p className="text-[23px] font-bold text-neutral-600 leading-[150%]">
