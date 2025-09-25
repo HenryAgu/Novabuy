@@ -37,7 +37,7 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <main className="min-h-screen flex lg:flex-row flex-col gap-x-15 pr-5 pl-5 lg:pl-0 lg:pr-24 pb-14 lg:pb-28">
       <div className="basis-[50%] bg-black">1</div>
-      <div className="basis-[50%] p-2.5 flex flex-col gap-y-3.5 lg:gap-y-7">
+      <div className="basis-[50%] lg:p-2.5 flex flex-col gap-y-3.5 lg:gap-y-7">
         <div className="flex flex-col gap-y-3">
           <p className="text-[23px] font-bold text-neutral-600 leading-[150%]">
             The NovaGlam Shoe
