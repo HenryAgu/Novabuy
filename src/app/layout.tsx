@@ -9,7 +9,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://novabuy-vnlm.vercel.app/"), 
+  metadataBase: new URL("https://novabuy-stores.vercel.app/"), 
   title: "NovaBuy – Seamless & Authentic Online Shopping",
   description:
     "NovaBuy is a modern e-commerce platform built for mid to high-income shoppers in Nigeria. It delivers fast, reliable shopping with secure payments, transparent pricing, and trusted reviews.",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "NovaBuy – Seamless & Authentic Online Shopping",
     description:
       "Shop with confidence on NovaBuy. Enjoy secure payments, detailed product info, and fast delivery across Nigeria.",
-    url: "https://novabuy-vnlm.vercel.app/",
+    url: "https://novabuy-stores.vercel.app/",
     siteName: "NovaBuy",
     images: [
       {
