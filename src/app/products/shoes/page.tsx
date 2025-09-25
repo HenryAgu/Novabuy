@@ -19,7 +19,7 @@ const ShoePage = () => {
     setRenderedShoes((prev) => prev + 4);
   };
   return (
-    <main className="lg:px-24 lg:py-8 px-5 py-8 ">
+    <main className="lg:px-24 lg:py-8 px-5 py-8 overflow-x-hidden">
       <div className="flex items-center justify-between">
         <span className="text-neutral-600 font-bold text-lg lg:text-[26px] lg:leading-[150%]">
           Shoes
@@ -30,7 +30,7 @@ const ShoePage = () => {
         </span>
         <div className="flex items-center gap-x-5.5">
           <Sheet>
-            <SheetTrigger>Filter</SheetTrigger>
+            <SheetTrigger className="cursor-pointer">Filter</SheetTrigger>
             <SideFilter />
           </Sheet>
           <span>|</span>

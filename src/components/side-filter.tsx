@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "./ui/accordion";
 import { Checkbox } from "./ui/checkbox";
+import { Button } from "./ui/button";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -194,9 +195,9 @@ const SizeSection = () => {
           </AccordionTrigger>
           <AccordionContent className="mt-4 flex flex-wrap gap-2.5 w-full">
             {sizes.map((item) => (
-              <div className="border border-neutral-50 p-2.5 h-[76px] w-[67px] flex items-center justify-center gap-y-3.5" key={item.id}>
+              <Button type="button" variant="ghost" className="border border-neutral-50 rounded-0 p-2.5 h-[76px] w-[67px] flex items-center justify-center gap-y-3.5" key={item.id}>
                 {item.size}
-              </div>
+              </Button>
             ))}
           </AccordionContent>
         </AccordionItem>
