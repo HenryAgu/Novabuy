@@ -1,10 +1,9 @@
 "use client";
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
+import { swiperProducts } from "@/components/data/products";
 import ProductCardItem from "@/components/product-card-item";
-import { ProductCard } from "@/components/types";
+import SideFilter from "@/components/side-filter";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetTrigger } from "@/components/ui/sheet";
 import { Rubik } from "next/font/google";
 import React, { useState } from "react";
 
@@ -12,81 +11,6 @@ const rubik = Rubik({
   variable: "--font-rubik",
   subsets: ["latin"],
 });
-
-const swiperProducts: ProductCard[] = [
-  {
-    name: "men",
-    image: "/images/item4.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "women",
-    image: "/images/item5.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "men",
-    image: "/images/item4.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "women",
-    image: "/images/item5.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "Kids",
-    image: "/images/item6.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "men",
-    image: "/images/item3.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "women",
-    image: "/images/item5.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "Kids",
-    image: "/images/item4.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "men",
-    image: "/images/item4.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "women",
-    image: "/images/item5.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "men",
-    image: "/images/item4.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "women",
-    image: "/images/item5.png",
-    link: "",
-    price: 140500,
-  },
-];
 
 const ShoePage = () => {
   const [renderedShoes, setRenderedShoes] = useState<number>(8);
@@ -107,15 +31,15 @@ const ShoePage = () => {
         <div className="flex items-center gap-x-5.5">
           <Sheet>
             <SheetTrigger>Filter</SheetTrigger>
-            <SheetContent>Test</SheetContent>
+            <SideFilter />
           </Sheet>
           <span>|</span>
           <button>Sort by</button>
         </div>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6 lg:gap-y-12 my-5 lg:my-10">
-        {swiperProducts.slice(0, renderedShoes).map((item, index) => (
-          <ProductCardItem item={item} key={index} />
+        {swiperProducts.slice(0, renderedShoes).map((item) => (
+          <ProductCardItem item={item} key={item.id} />
         ))}
       </div>
       {renderedShoes < swiperProducts.length && (

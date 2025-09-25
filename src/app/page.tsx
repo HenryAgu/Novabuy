@@ -7,10 +7,10 @@ import NovabuyNews from "@/components/home/novabuy-news";
 import WhoFor from "@/components/home/who-for";
 import Loading from "@/components/loading";
 import Navbar from "@/components/navbar";
-import { ProductCard } from "@/components/types";
 import { useEffect, useState } from "react";
 import SwiperProducts from "@/components/home/swiper-products";
 import CarouselSectionProducts from "@/components/home/carousel-section-products";
+import { carouselProducts, products, swiperProducts } from "@/components/data/products";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -26,114 +26,6 @@ export default function Home() {
   if (loading) {
     return <Loading />;
   }
-
-  const products: ProductCard[] = [
-    {
-      name: "men",
-      image: "/images/item1.png",
-      link: "",
-    },
-    {
-      name: "women",
-      image: "/images/item2.png",
-      link: "",
-    },
-    {
-      name: "Kids",
-      image: "/images/item3.png",
-      link: "",
-    },
-  ];
-
-  const swiperProducts: ProductCard[] = [
-    {
-      name: "men",
-      image: "/images/item4.png",
-      link: "",
-      price: 140500,
-    },
-    {
-      name: "women",
-      image: "/images/item5.png",
-      link: "",
-      price: 140500,
-    },
-    {
-      name: "men",
-      image: "/images/item4.png",
-      link: "",
-      price: 140500,
-    },
-    {
-      name: "women",
-      image: "/images/item5.png",
-      link: "",
-      price: 140500,
-    },
-    {
-      name: "Kids",
-      image: "/images/item6.png",
-      link: "",
-      price: 140500,
-    },
-    {
-      name: "men",
-      image: "/images/item3.png",
-      link: "",
-      price: 140500,
-    },
-    {
-      name: "women",
-      image: "/images/item5.png",
-      link: "",
-      price: 140500,
-    },
-    {
-      name: "Kids",
-      image: "/images/item4.png",
-      link: "",
-      price: 140500,
-    },
-  ];
-
-  const carouselProducts: ProductCard[] = [
-    {
-      name: "men",
-      image: "/images/item4.png",
-      link: "",
-      price: 140500,
-    },
-    {
-      name: "women",
-      image: "/images/item5.png",
-      link: "",
-      price: 140500,
-    },
-    {
-      name: "Kids",
-      image: "/images/item6.png",
-      link: "",
-      price: 140500,
-    },
-    {
-      name: "men",
-      image: "/images/item3.png",
-      link: "",
-      price: 140500,
-    },
-    {
-      name: "women",
-      image: "/images/item5.png",
-      link: "",
-      price: 140500,
-    },
-    {
-      name: "Kids",
-      image: "/images/item4.png",
-      link: "",
-      price: 140500,
-    },
-  ];
 
   return (
     <main>

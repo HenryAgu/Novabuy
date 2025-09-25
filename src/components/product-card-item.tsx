@@ -9,7 +9,7 @@ interface ProductCardProps {
 
 const ProductCardItem = ({ item }: ProductCardProps) => {
   return (
-    <Link href={`/products/90`} className="flex flex-col gap-y-2 lg:gap-y-4">
+    <Link href={`/${item.id}`} className="flex flex-col gap-y-2 lg:gap-y-4">
       <Image
         src={item.image}
         alt="image"
@@ -22,7 +22,7 @@ const ProductCardItem = ({ item }: ProductCardProps) => {
           {item.name}
         </p>
         <span className="text-neutral-300 text-sm lg:text-base font-semibold">
-          $ {item.price?.toLocaleString()}
+           ${item.price?.toLocaleString("en-US")}
         </span>
       </div>
     </Link>
