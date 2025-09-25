@@ -1,57 +1,7 @@
 import React from "react";
-import { ProductCard } from "../types";
 import ProductCardItem from "../product-card-item";
+import { products } from "../data/products";
 
-const products: ProductCard[] = [
-  {
-    name: "men",
-    image: "/images/item4.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "women",
-    image: "/images/item5.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "men",
-    image: "/images/item4.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "women",
-    image: "/images/item5.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "Kids",
-    image: "/images/item6.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "men",
-    image: "/images/item3.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "women",
-    image: "/images/item5.png",
-    link: "",
-    price: 140500,
-  },
-  {
-    name: "Kids",
-    image: "/images/item4.png",
-    link: "",
-    price: 140500,
-  },
-];
 
 const SpecialOffers = () => {
   return (

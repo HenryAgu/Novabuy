@@ -9,7 +9,7 @@ interface ProductCardProps {
 
 const ProductCardItem = ({ item }: ProductCardProps) => {
   return (
-    <Link href={`/${item.id}`} className="flex flex-col gap-y-2 lg:gap-y-4">
+    <Link href={`/products/${item.id}`} className="flex flex-col gap-y-2 lg:gap-y-4">
       <Image
         src={item.image}
         alt="image"
