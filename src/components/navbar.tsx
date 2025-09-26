@@ -6,8 +6,15 @@ import ShoppingBag from "./icons/shoppingBag";
 import User from "./icons/user";
 import SearchIcon from "./icons/searchIcon";
 import MenuIcon from "./icons/menu-icon";
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
 import CloseIcon from "./icons/close-icon";
+import ShopBag from "./shopping-bag/shop-bag";
 
 interface NavMenu {
   name?: string;
@@ -31,7 +38,7 @@ const navMenu: NavMenu[] = [
     name: "Kids",
     link: "/kids",
   },
-    {
+  {
     name: "Shoes",
     link: "/products/shoes",
   },
@@ -43,7 +50,7 @@ const navMenu: NavMenu[] = [
 
 const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between py-5 lg:py-6 px-5 lg:px-24" >
+    <nav className="flex items-center justify-between py-5 lg:py-6 px-5 lg:px-24">
       <Link href="/">
         <Image
           src="/icons/Logo.svg"
@@ -62,9 +69,13 @@ const Navbar = () => {
         ))}
       </ul>
       <div className="flex items-center gap-5 lg:gap-10">
-        <button>
-          <ShoppingBag />
-        </button>
+        <Sheet>
+          <SheetTrigger>
+            <ShoppingBag />
+            {/* Shopping Bag content */}
+          </SheetTrigger>
+          <ShopBag />
+        </Sheet>
         <button>
           <User />
         </button>
