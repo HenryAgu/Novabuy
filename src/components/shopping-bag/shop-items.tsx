@@ -18,7 +18,7 @@ const ShopItems = () => {
             <p className={`font-bold text-lg text-neutral-600 leading-[150%]`}>
               Shopping Bag
             </p>
-            <ScrollArea className="h-[70vh]">
+            <ScrollArea className="h-[50vh] lg:h-[70vh]">
               <div className="flex flex-col gap-y-5 lg:gap-y-8 my-5">
                 {shopBags.map((item) => (
                   <div className="flex gap-x-4 lg:gap-x-9.5" key={item.id}>
