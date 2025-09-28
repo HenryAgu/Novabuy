@@ -9,7 +9,7 @@ const ShopBag = () => {
     <div>
       <SheetContent
         side="top"
-        className="w-full max-w-full h-full lg:w-full lg:max-w-full py-5 lg:py-12 px-5 lg:px-24"
+        className="w-full max-w-full h-full lg:w-full lg:max-w-full py-5 lg:py-12 px-5 lg:px-24 mx-auto"
       >
         <SheetTitle className="flex items-center justify-between">
           <div />
@@ -18,7 +18,9 @@ const ShopBag = () => {
           </SheetClose>
         </SheetTitle>
         <section className="flex lg:flex-row flex-col gap-y-12 gap-x-24 ">
+          {/* Shopped Items */}
           <ShopItems />
+          {/* Summary For Checkout */}
           <Summary />
         </section>
       </SheetContent>
