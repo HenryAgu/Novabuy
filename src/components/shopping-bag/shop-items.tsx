@@ -7,6 +7,7 @@ import { ShopBag, shopBags } from "../data/shop-bag";
 import { Rubik } from "next/font/google";
 import CircleMinus from "../icons/circle-minus";
 import CircleAdditon from "../icons/circle-additon";
+import { useCounterStore } from "@/providers/counter-store-providers";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -35,8 +36,11 @@ const ShopItems = () => {
 };
 
 const Item = ({ item }: ItemProps) => {
+    const { counts, incrementCount, decrementCount } = useCounterStore(
+    (state) => state
+  );
   return (
-    <div className="flex gap-x-4 lg:gap-x-9.5" key={item.id}>
+    <div className="flex gap-x-4 lg:gap-x-9.5">
       <Image
         src={item.image}
         width={254}
@@ -71,12 +75,16 @@ const Item = ({ item }: ItemProps) => {
             <p className="text-xs lg:text-sm font-normal text-neutral-400 lg:leading-[150%] line-clamp-1">
               {item.id}
             </p>
-            <div className="flex items-center gap-x-5">
-              <CircleMinus />
+            <div className="flex items-center gap-x-2.5 lg:gap-x-5">
+              <button className="cursor-pointer" onClick={()=> decrementCount(item.id)} disabled={counts[item.id] === 1}>
+                <CircleMinus className="w-5 h-5 lg:w-[31px] lg:h-[31px]"/>
+              </button>
               <p className="text-xs lg:text-sm font-normal text-neutral-400 lg:leading-[150%]">
-                1x
+                {counts[item.id] || 1}x
               </p>
-              <CircleAdditon />
+              <button className="cursor-pointer" onClick={()=> incrementCount(item.id)} >
+                <CircleAdditon className="w-3.5 h-3.5 lg:w-[31px] lg:h-[31px]"/>
+              </button>
             </div>
             <p className="text-xs lg:text-sm font-normal text-neutral-400 lg:leading-[150%]">
               {item.size}

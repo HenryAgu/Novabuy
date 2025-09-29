@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sora } from "next/font/google";
 import "./globals.css";
+import { CounterStoreProvider } from "@/providers/counter-store-providers";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -9,7 +10,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://novabuy-stores.vercel.app/"), 
+  metadataBase: new URL("https://novabuy-stores.vercel.app/"),
   title: "NovaBuy – Seamless & Authentic Online Shopping",
   description:
     "NovaBuy is a modern e-commerce platform built for mid to high-income shoppers in Nigeria. It delivers fast, reliable shopping with secure payments, transparent pricing, and trusted reviews.",
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     siteName: "NovaBuy",
     images: [
       {
-        url: "/images/open-graph.png", 
+        url: "/images/open-graph.png",
         width: 1200,
         height: 630,
         alt: "NovaBuy – Seamless & Authentic Online Shopping",
@@ -50,7 +51,6 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -61,7 +61,7 @@ export default function RootLayout({
       <body
         className={`${sora.className} antialiased w-full mx-auto [@media(min-width:1920px)]:max-w-[1440px]`}
       >
-        {children}
+        <CounterStoreProvider>{children}</CounterStoreProvider>
       </body>
     </html>
   );

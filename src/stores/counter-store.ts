@@ -1,18 +1,18 @@
 import { createStore } from "zustand";
 
 export type CounterState = {
-  count: number;
+  counts: Record<string, number>; // store counts by item id
 };
 
 export type CounterActions = {
-  decrementCount: () => void;
-  incrementCount: () => void;
+  incrementCount: (id: string) => void;
+  decrementCount: (id: string) => void;
 };
 
 export type CounterStore = CounterState & CounterActions;
 
 export const defaultInitState: CounterState = {
-  count: 0,
+  counts: {}, 
 };
 
 export const createCounterStore = (
@@ -20,7 +20,19 @@ export const createCounterStore = (
 ) => {
   return createStore<CounterStore>()((set) => ({
     ...initState,
-    decrementCount: () => set((state) => ({ count: state.count - 1 })),
-    incrementCount: () => set((state) => ({ count: state.count + 1 })),
+    incrementCount: (id: string) =>
+      set((state) => ({
+        counts: {
+          ...state.counts,
+          [id]: (state.counts[id] || 1) + 1, // default to 1 if not set
+        },
+      })),
+    decrementCount: (id: string) =>
+      set((state) => ({
+        counts: {
+          ...state.counts,
+          [id]: Math.max((state.counts[id] || 1) - 1, 1), // don't go below 1
+        },
+      })),
   }));
 };
