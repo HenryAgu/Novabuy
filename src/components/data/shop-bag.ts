@@ -1,7 +1,7 @@
 const generateId = () =>
   typeof window !== "undefined" ? window.crypto.randomUUID() : "";
 
-interface ShopBag {
+export interface ShopBag {
   id: string;
   image: string;
   name: string;
