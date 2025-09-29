@@ -83,7 +83,7 @@ const Item = ({ item }: ItemProps) => {
                 {counts[item.id] || 1}x
               </p>
               <button className="cursor-pointer" onClick={()=> incrementCount(item.id)} >
-                <CircleAdditon className="w-3.5 h-3.5 lg:w-[31px] lg:h-[31px]"/>
+                <CircleAdditon className="w-5 h-5 lg:w-[31px] lg:h-[31px]"/>
               </button>
             </div>
             <p className="text-xs lg:text-sm font-normal text-neutral-400 lg:leading-[150%]">
