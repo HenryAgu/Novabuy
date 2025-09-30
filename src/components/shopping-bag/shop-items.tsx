@@ -3,11 +3,11 @@ import DeleteIcon from "../icons/delete-icon";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { ScrollArea } from "../ui/scroll-area";
-import { ShopBag, shopBags } from "../data/shop-bag";
+import { ShopBag } from "../data/shop-bag";
 import { Rubik } from "next/font/google";
 import CircleMinus from "../icons/circle-minus";
 import CircleAdditon from "../icons/circle-additon";
-import { useCounterStore } from "@/providers/counter-store-providers";
+import { useCartStore } from "@/stores/cart-stores";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -15,10 +15,12 @@ const rubik = Rubik({
 });
 
 interface ItemProps {
-  item: ShopBag;
+  item: ShopBag & { quantity: number };
 }
 
 const ShopItems = () => {
+  const items = useCartStore((state) => state.items);
+  
   return (
     <div className="basis-[50%]">
       <p className={`font-bold text-lg text-neutral-600 leading-[150%]`}>
@@ -26,9 +28,13 @@ const ShopItems = () => {
       </p>
       <ScrollArea className="h-[50vh] lg:h-[70vh]">
         <div className="flex flex-col gap-y-5 lg:gap-y-8 my-5">
-          {shopBags.map((item) => (
-            <Item key={item.id} item={item} />
-          ))}
+          {items.length === 0 ? (
+            <p className="text-neutral-400 text-center py-8">Your shopping bag is empty</p>
+          ) : (
+            items.map((item) => (
+              <Item key={item.id} item={item} />
+            ))
+          )}
         </div>
       </ScrollArea>
     </div>
@@ -36,9 +42,10 @@ const ShopItems = () => {
 };
 
 const Item = ({ item }: ItemProps) => {
-    const { counts, incrementCount, decrementCount } = useCounterStore(
+  const { increaseQuantity, decreaseQuantity, removeFromCart } = useCartStore(
     (state) => state
   );
+  
   return (
     <div className="flex gap-x-4 lg:gap-x-9.5">
       <Image
@@ -76,13 +83,20 @@ const Item = ({ item }: ItemProps) => {
               {item.id}
             </p>
             <div className="flex items-center gap-x-2.5 lg:gap-x-5">
-              <button className="cursor-pointer" onClick={()=> decrementCount(item.id)} disabled={counts[item.id] === 1}>
+              <button 
+                className="cursor-pointer" 
+                onClick={() => decreaseQuantity(item.id)} 
+                disabled={item.quantity === 1}
+              >
                 <CircleMinus className="w-5 h-5 lg:w-[31px] lg:h-[31px]"/>
               </button>
               <p className="text-xs lg:text-sm font-normal text-neutral-400 lg:leading-[150%]">
-                {counts[item.id] || 1}x
+                {item.quantity}x
               </p>
-              <button className="cursor-pointer" onClick={()=> incrementCount(item.id)} >
+              <button 
+                className="cursor-pointer" 
+                onClick={() => increaseQuantity(item.id)}
+              >
                 <CircleAdditon className="w-5 h-5 lg:w-[31px] lg:h-[31px]"/>
               </button>
             </div>
@@ -91,7 +105,12 @@ const Item = ({ item }: ItemProps) => {
             </p>
           </div>
         </div>
-        <Button type="button" variant="ghost" className="w-fit">
+        <Button 
+          type="button" 
+          variant="ghost" 
+          className="w-fit"
+          onClick={() => removeFromCart(item.id)}
+        >
           <DeleteIcon />
         </Button>
       </div>

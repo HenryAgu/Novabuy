@@ -10,6 +10,7 @@ const productImages: string[] = [
 
 const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
+  console.log(id)
 
   return (
     <main className="min-h-screen flex lg:flex-row flex-col gap-15 pr-5 pl-5 lg:pl-0 lg:pr-24 pb-14 lg:pb-28">
@@ -25,7 +26,7 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
           />
         ))}
       </div>
-      <ProductDetails />
+      <ProductDetails id={id}/>
     </main>
   );
 };

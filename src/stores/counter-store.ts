@@ -1,7 +1,7 @@
 import { createStore } from "zustand";
 
 export type CounterState = {
-  counts: Record<string, number>; // store counts by item id
+  counts: Record<string, number>; 
 };
 
 export type CounterActions = {

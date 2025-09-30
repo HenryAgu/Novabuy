@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Sora } from "next/font/google";
 import "./globals.css";
 import { CounterStoreProvider } from "@/providers/counter-store-providers";
+import { CartStoreProvider } from "@/providers/cart-store-providers";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -61,7 +62,11 @@ export default function RootLayout({
       <body
         className={`${sora.className} antialiased w-full mx-auto [@media(min-width:1920px)]:max-w-[1440px]`}
       >
-        <CounterStoreProvider>{children}</CounterStoreProvider>
+        <CounterStoreProvider>
+          <CartStoreProvider>
+            {children}
+          </CartStoreProvider>
+        </CounterStoreProvider>
       </body>
     </html>
   );

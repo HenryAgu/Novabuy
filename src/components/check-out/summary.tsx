@@ -3,6 +3,7 @@ import { ScrollArea } from "../ui/scroll-area";
 import { Button } from "../ui/button";
 import { Rubik } from "next/font/google";
 import QuestionIcon from "../icons/question-icon";
+import { useCartStore } from "@/stores/cart-stores";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -10,6 +11,14 @@ const rubik = Rubik({
 });
 
 const Summary = () => {
+  const { getTotalPrice, getTotalItems } = useCartStore((state) => state);
+  
+  const subtotal = getTotalPrice();
+  const shipping = subtotal > 0 ? 4500 : 0; // Free shipping threshold logic
+  const taxes = 0; // No taxes for now
+  const total = subtotal + shipping + taxes;
+  const totalItems = getTotalItems();
+
   return (
     <div className="basis-[50%]">
       <p className={`font-bold text-lg text-neutral-600 leading-[150%]`}>
@@ -21,11 +30,11 @@ const Summary = () => {
             <p
               className={`${rubik.className} text-base font-normal leading-[150%] flex items-center gap-x-3.5`}
             >
-              <span>Sub Total</span>
+              <span>Sub Total ({totalItems} items)</span>
               <QuestionIcon />
             </p>
             <p className="text-neutral-500 text-base font-normal leading-[150%]">
-              ₦ 131,500
+              ₦ {subtotal.toLocaleString()}
             </p>
           </div>
           <div className="flex items-center justify-between">
@@ -35,7 +44,7 @@ const Summary = () => {
               Shipping
             </p>
             <p className="text-neutral-500 text-base font-normal leading-[150%]">
-              ₦ 4,500
+              ₦ {shipping.toLocaleString()}
             </p>
           </div>
           <div className="flex items-center justify-between">
@@ -46,7 +55,7 @@ const Summary = () => {
               <QuestionIcon />
             </p>
             <p className="text-neutral-500 text-base font-normal leading-[150%]">
-              ₦ 0
+              ₦ {taxes.toLocaleString()}
             </p>
           </div>
         </div>
@@ -57,13 +66,14 @@ const Summary = () => {
             Total
           </p>
           <p className="text-neutral-600 font-bold text-xl leading-[150%]">
-            ₦ 136,000
+            ₦ {total.toLocaleString()}
           </p>
         </div>
         <Button
           type="button"
           variant="default"
           className="my-10 w-full bg-primary-500 text-white rounded-[50px]  text-base font-normal leading-[150%]"
+          disabled={totalItems === 0}
         >
           Continue CheckOut
         </Button>

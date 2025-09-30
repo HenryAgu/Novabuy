@@ -32,7 +32,11 @@ const sizes = [
   { id: crypto.randomUUID(), size: 47.5 },
 ];
 
-const ProductDetails = () => {
+type ProductDetailsProps = {
+  id: string;
+};
+
+const ProductDetails = ({id}:ProductDetailsProps) => {
   return (
     <aside className="basis-[50%] lg:p-2.5 flex flex-col gap-y-3.5 lg:gap-y-7">
       <div className="flex flex-col gap-y-3">
@@ -76,7 +80,7 @@ const ProductDetails = () => {
           </Button>
         ))}
       </div>
-      <AddToBag />
+      <AddToBag id={id}/>
     </aside>
   );
 };

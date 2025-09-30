@@ -15,6 +15,7 @@ import {
 } from "./ui/sheet";
 import CloseIcon from "./icons/close-icon";
 import ShopBag from "./shopping-bag/shop-bag";
+import { useCartStore } from "@/stores/cart-stores";
 
 interface NavMenu {
   name?: string;
@@ -49,6 +50,8 @@ const navMenu: NavMenu[] = [
 ];
 
 const Navbar = () => {
+  const totalItems = useCartStore((state) => state.getTotalItems());
+  
   return (
     <nav className="flex items-center justify-between py-5 lg:py-6 px-5 lg:px-24">
       <Link href="/">
@@ -70,9 +73,13 @@ const Navbar = () => {
       </ul>
       <div className="flex items-center gap-5 lg:gap-10">
         <Sheet>
-          <SheetTrigger>
+          <SheetTrigger className="relative">
             <ShoppingBag />
-            {/* Shopping Bag content */}
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
           </SheetTrigger>
           <ShopBag />
         </Sheet>
