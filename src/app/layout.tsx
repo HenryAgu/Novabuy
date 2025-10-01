@@ -3,6 +3,7 @@ import { Sora } from "next/font/google";
 import "./globals.css";
 import { CounterStoreProvider } from "@/providers/counter-store-providers";
 import { CartStoreProvider } from "@/providers/cart-store-providers";
+import { Toaster } from "@/components/ui/sonner";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -67,6 +68,7 @@ export default function RootLayout({
             {children}
           </CartStoreProvider>
         </CounterStoreProvider>
+        <Toaster/>
       </body>
     </html>
   );

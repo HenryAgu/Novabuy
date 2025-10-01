@@ -8,6 +8,7 @@ import { Rubik } from "next/font/google";
 import CircleMinus from "../icons/circle-minus";
 import CircleAdditon from "../icons/circle-additon";
 import { useCartStore } from "@/stores/cart-stores";
+import { toast } from "sonner";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -20,7 +21,7 @@ interface ItemProps {
 
 const ShopItems = () => {
   const items = useCartStore((state) => state.items);
-  
+
   return (
     <div className="basis-[50%]">
       <p className={`font-bold text-lg text-neutral-600 leading-[150%]`}>
@@ -29,11 +30,11 @@ const ShopItems = () => {
       <ScrollArea className="h-[50vh] lg:h-[70vh]">
         <div className="flex flex-col gap-y-5 lg:gap-y-8 my-5">
           {items.length === 0 ? (
-            <p className="text-neutral-400 text-center py-8">Your shopping bag is empty</p>
+            <p className="text-neutral-400 text-center py-8">
+              Your shopping bag is empty
+            </p>
           ) : (
-            items.map((item) => (
-              <Item key={item.id} item={item} />
-            ))
+            items.map((item) => <Item key={item.id} item={item} />)
           )}
         </div>
       </ScrollArea>
@@ -45,7 +46,13 @@ const Item = ({ item }: ItemProps) => {
   const { increaseQuantity, decreaseQuantity, removeFromCart } = useCartStore(
     (state) => state
   );
-  
+
+  const handleRemoveFromCart = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    removeFromCart(item.id);
+    toast.success("Item added to cart!");
+  };
+
   return (
     <div className="flex gap-x-4 lg:gap-x-9.5">
       <Image
@@ -83,21 +90,21 @@ const Item = ({ item }: ItemProps) => {
               {item.id}
             </p>
             <div className="flex items-center gap-x-2.5 lg:gap-x-5">
-              <button 
-                className="cursor-pointer" 
-                onClick={() => decreaseQuantity(item.id)} 
+              <button
+                className="cursor-pointer"
+                onClick={() => decreaseQuantity(item.id)}
                 disabled={item.quantity === 1}
               >
-                <CircleMinus className="w-5 h-5 lg:w-[31px] lg:h-[31px]"/>
+                <CircleMinus className="w-5 h-5 lg:w-[31px] lg:h-[31px]" />
               </button>
               <p className="text-xs lg:text-sm font-normal text-neutral-400 lg:leading-[150%]">
                 {item.quantity}x
               </p>
-              <button 
-                className="cursor-pointer" 
+              <button
+                className="cursor-pointer"
                 onClick={() => increaseQuantity(item.id)}
               >
-                <CircleAdditon className="w-5 h-5 lg:w-[31px] lg:h-[31px]"/>
+                <CircleAdditon className="w-5 h-5 lg:w-[31px] lg:h-[31px]" />
               </button>
             </div>
             <p className="text-xs lg:text-sm font-normal text-neutral-400 lg:leading-[150%]">
@@ -105,11 +112,11 @@ const Item = ({ item }: ItemProps) => {
             </p>
           </div>
         </div>
-        <Button 
-          type="button" 
-          variant="ghost" 
+        <Button
+          type="button"
+          variant="ghost"
           className="w-fit"
-          onClick={() => removeFromCart(item.id)}
+          onClick={handleRemoveFromCart}
         >
           <DeleteIcon />
         </Button>

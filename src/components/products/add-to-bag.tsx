@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "../ui/button";
 import { useCartStore } from "@/stores/cart-stores";
+import { toast } from "sonner";
 
 type ProductDetailsProps = {
   id: string;
@@ -18,8 +19,14 @@ const AddToBag = ({ id }: ProductDetailsProps) => {
     size: 42, // Default size, in real app this would be selected by user
   };
 
-  const handleAddToCart = () => {
-    addToCart(mockProduct);
+  const handleAddToCart = async () => {
+
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
+  addToCart(mockProduct);
+
+
+  toast.success("Item added to cart!");
   };
 
   return (
