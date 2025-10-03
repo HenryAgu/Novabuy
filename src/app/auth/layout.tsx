@@ -8,14 +8,14 @@ interface AuthLayoutProps {
 const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
   return (
     <main className="flex lg:flex-row flex-col">
-      <div className="lg:basis-[50%]">{children}</div>
-      <div className="basis-[50%]">
+      <div className="basis-[100%] lg:basis-[50%]">{children}</div>
+      <div className="hidden lg:flex basis-[50%]">
         <Image
           src="/images/login.png"
           alt="login-page"
           width={760}
           height={1040}
-          className="w-full h-full hidden lg:block"
+          className="w-full h-full"
         />
       </div>
     </main>
