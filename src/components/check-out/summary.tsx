@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { Rubik } from "next/font/google";
 import QuestionIcon from "../icons/question-icon";
 import { useCartStore } from "@/stores/cart-stores";
+import Link from "next/link";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -12,7 +13,7 @@ const rubik = Rubik({
 
 const Summary = () => {
   const { getTotalPrice, getTotalItems } = useCartStore((state) => state);
-  
+
   const subtotal = getTotalPrice();
   const shipping = subtotal > 0 ? 4500 : 0; // Free shipping threshold logic
   const taxes = 0; // No taxes for now
@@ -75,7 +76,7 @@ const Summary = () => {
           className="my-10 w-full bg-primary-500 text-white rounded-[50px]  text-base font-normal leading-[150%]"
           disabled={totalItems === 0}
         >
-          Continue CheckOut
+          <Link href="/auth/sign-up">Continue CheckOut</Link>
         </Button>
       </ScrollArea>
     </div>
