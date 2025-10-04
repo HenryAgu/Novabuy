@@ -10,13 +10,8 @@ const rubik = Rubik({
 const SignUpPage = () => {
   return (
     <div
-      className="p-20 bg-red-900 min-h-screen"
-      style={{
-        paddingTop: "40px",
-        paddingBottom: "40px",
-        paddingLeft: "80px",
-        paddingRight: "80px",
-      }}
+      className="p-5 lg:p-20 min-h-screen lg:h-full"
+
     >
       <Image
         src="/icons/Logo2.svg"
