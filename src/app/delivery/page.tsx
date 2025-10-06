@@ -1,11 +1,19 @@
-"use client";
-import Summary from "@/components/check-out/summary";
+import Items from "@/components/check-out/summary-items";
 import DeliveryForm from "@/components/delivery/delivery-form";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 import React from "react";
 
-const DeliveryPage = () => {
+const DeliveryPage = async () => {
+  const supabase = await createClient();
+  const { data, error } = await supabase.auth.getUser();
+  if (error || !data?.user) {
+    redirect("/login");
+  }
+  console.log(data);
+
   return (
     <div className="">
       <Navbar />
@@ -14,7 +22,7 @@ const DeliveryPage = () => {
           <DeliveryForm />
         </div>
         <div className="basis-[40%]">
-          <Summary />
+          <Items />
         </div>
       </main>
       <Footer />

@@ -1,0 +1,75 @@
+"use client"
+import React from "react";
+import { ScrollArea } from "../ui/scroll-area";
+import QuestionIcon from "../icons/question-icon";
+import { Rubik } from "next/font/google";
+import { useCartStore } from "@/stores/cart-stores";
+
+const rubik = Rubik({
+  variable: "--font-rubik",
+  subsets: ["latin"],
+});
+
+const SummaryItems = () => {
+      const { getTotalPrice, getTotalItems } = useCartStore((state) => state);
+      const subtotal = getTotalPrice();
+      const shipping = subtotal > 0 ? 4500 : 0; // Free shipping threshold logic
+      const taxes = 0; // No taxes for now
+      const total = subtotal + shipping + taxes;
+       const totalItems = getTotalItems();
+  return (
+    <div>
+      <p className={`font-bold text-lg text-neutral-600 leading-[150%]`}>
+        Summary
+      </p>
+      <ScrollArea className="my-5 max-w-full lg:max-w-[500px] lg:h-fit lg:max-h-[70vh] h-[20vh]">
+        <div className="flex flex-col gap-y-5">
+          <div className="flex items-center justify-between">
+            <p
+              className={`${rubik.className} text-base font-normal leading-[150%] flex items-center gap-x-3.5`}
+            >
+              <span>Sub Total ({totalItems} items)</span>
+              <QuestionIcon />
+            </p>
+            <p className="text-neutral-500 text-base font-normal leading-[150%]">
+              ₦ {subtotal.toLocaleString()}
+            </p>
+          </div>
+          <div className="flex items-center justify-between">
+            <p
+              className={`${rubik.className} text-base font-normal leading-[150%]`}
+            >
+              Shipping
+            </p>
+            <p className="text-neutral-500 text-base font-normal leading-[150%]">
+              ₦ {shipping.toLocaleString()}
+            </p>
+          </div>
+          <div className="flex items-center justify-between">
+            <p
+              className={`${rubik.className} text-base font-normal leading-[150%] flex items-center gap-x-3.5`}
+            >
+              <span>Taxes</span>
+              <QuestionIcon />
+            </p>
+            <p className="text-neutral-500 text-base font-normal leading-[150%]">
+              ₦ {taxes.toLocaleString()}
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center justify-between my-5 py-2.5 border-t border-t-[#D3D3D3]">
+          <p
+            className={`${rubik.className} text-neutral-600 text-xl font-normal`}
+          >
+            Total
+          </p>
+          <p className="text-neutral-600 font-bold text-xl leading-[150%]">
+            ₦ {total.toLocaleString()}
+          </p>
+        </div>
+      </ScrollArea>
+    </div>
+  );
+};
+
+export default SummaryItems;

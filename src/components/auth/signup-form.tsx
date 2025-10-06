@@ -18,7 +18,10 @@ import Link from "next/link";
 import { Rubik } from "next/font/google";
 import Eye from "../icons/eye";
 import EyeSlash from "../icons/eye-slash";
-import { useState } from "react";
+import { useEffect, useState, useActionState } from "react";
+import { signup } from "@/app/auth/login/action";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 // ✅ Schema
 const formSchema = z.object({
@@ -48,20 +51,23 @@ export function SignUpForm() {
       password: "",
     },
   });
-
-  // ✅ Submit handler
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("Form submitted:", values);
-  };
-
+  
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const [state, formAction, pending] = useActionState(signup, null);
+  useEffect(() => {
+    if (!state) return;
+    if ("error" in state && state?.error) {
+      toast.error(state.error);
+    } else if ("success" in state && state.success) {
+      toast.success("Account created!");
+      router.replace("/");
+    }
+  }, [state, router]);
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-y-2.5 lg:gap-y-5 my-4 lg:my-8"
-      >
+      <form action={formAction} className="flex flex-col gap-y-2.5 lg:gap-y-5 my-4 lg:my-8">
         {/* Name */}
         <FormField<z.infer<typeof formSchema>, "name">
           control={form.control}
@@ -109,6 +115,7 @@ export function SignUpForm() {
                   />
 
                   <button
+                    type="button"
                     onClick={() => setShowPassword((v) => !v)}
                   >
                     {showPassword ? <EyeSlash /> : <Eye />}
@@ -123,8 +130,9 @@ export function SignUpForm() {
         <Button
           type="submit"
           className="mt-5 py-5 rounded-[50px] text-sm lg:text-base bg-primary-500 cursor-pointer"
+          disabled={pending}
         >
-          Sign Up
+          {pending ? "Creating account..." : "Sign Up"}
         </Button>
       </form>
       <p

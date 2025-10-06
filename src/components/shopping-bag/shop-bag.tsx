@@ -1,8 +1,9 @@
 import React from "react";
 import { SheetClose, SheetContent, SheetTitle } from "../ui/sheet";
 import CloseIcon from "../icons/close-icon";
-import Summary from "../check-out/summary";
 import ShopItems from "./shop-items";
+import SummaryItems from "../check-out/summary-items";
+import Total from "../check-out/total";
 
 const ShopBag = () => {
   return (
@@ -21,7 +22,10 @@ const ShopBag = () => {
           {/* Shopped Items */}
           <ShopItems />
           {/* Summary For Checkout */}
-          <Summary />
+          <div className="basis-[50%] flex flex-col w-full">
+            <SummaryItems />
+            <Total />
+          </div>
         </section>
       </SheetContent>
     </div>

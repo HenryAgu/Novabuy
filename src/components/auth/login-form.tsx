@@ -18,7 +18,11 @@ import Link from "next/link";
 import { Rubik } from "next/font/google";
 import Eye from "../icons/eye";
 import EyeSlash from "../icons/eye-slash";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { login } from "@/app/auth/login/action";
+import { useActionState } from "react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 // ✅ Schema
 const formSchema = z.object({
@@ -45,19 +49,24 @@ export function LoginForm() {
     },
   });
 
-  // ✅ Submit handler
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("Form submitted:", values);
-  };
+  // Using server action via useActionState to handle client toasts and redirects
+  const router = useRouter();
+  const [state, formAction, pending] = useActionState(login, null);
+  useEffect(() => {
+    if (!state) return;
+    if ("error" in state && state?.error) {
+      toast.error(state.error);
+    } else if ("success" in state && state.success) {
+      toast.success("Logged in!");
+      router.replace("/");
+    }
+  }, [state, router]);
 
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-y-2.5 lg:gap-y-5 my-4 lg:my-8"
-      >
+      <form action={formAction} className="flex flex-col gap-y-2.5 lg:gap-y-5 my-4 lg:my-8">
         {/* Email */}
         <FormField<z.infer<typeof formSchema>, "email">
           control={form.control}
@@ -89,7 +98,7 @@ export function LoginForm() {
                     className="border-0 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
                   />
 
-                  <button onClick={() => setShowPassword((v) => !v)}>
+                  <button type="button" onClick={() => setShowPassword((v) => !v)}>
                     {showPassword ? <EyeSlash /> : <Eye />}
                   </button>
                 </div>
@@ -102,8 +111,9 @@ export function LoginForm() {
         <Button
           type="submit"
           className="mt-5 py-5 rounded-[50px] text-sm lg:text-base bg-primary-500 cursor-pointer"
+          disabled={pending}
         >
-          Login
+          {pending ? "Logging in..." : "Login"}
         </Button>
       </form>
       <p
