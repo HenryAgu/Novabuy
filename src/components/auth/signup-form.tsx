@@ -61,7 +61,7 @@ export function SignUpForm() {
       toast.error(state.error);
     } else if ("success" in state && state.success) {
       toast.success("Account created!");
-      router.replace("/");
+      router.replace("/delivery");
     }
   }, [state, router]);
 

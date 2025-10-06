@@ -58,7 +58,7 @@ export function LoginForm() {
       toast.error(state.error);
     } else if ("success" in state && state.success) {
       toast.success("Logged in!");
-      router.replace("/");
+      router.replace("/delivery");
     }
   }, [state, router]);
 
