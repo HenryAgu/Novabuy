@@ -100,7 +100,7 @@ export function SignUpForm() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <div className="flex items-center gap-x-5 border rounded-[50px] pr-0.5 lg:pr-2.5">
+                <div className="flex items-center gap-x-5 border rounded-[50px] pr-1.5 lg:pr-2.5">
                   <Input
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your Password"
@@ -108,13 +108,11 @@ export function SignUpForm() {
                     className="border-0 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
                   />
 
-                  <Button
-                    variant="ghost"
-                    type="button"
+                  <button
                     onClick={() => setShowPassword((v) => !v)}
                   >
                     {showPassword ? <EyeSlash /> : <Eye />}
-                  </Button>
+                  </button>
                 </div>
               </FormControl>
               <FormMessage />
