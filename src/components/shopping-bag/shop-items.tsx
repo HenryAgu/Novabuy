@@ -50,7 +50,7 @@ const Item = ({ item }: ItemProps) => {
   const handleRemoveFromCart = async () => {
     await new Promise((resolve) => setTimeout(resolve, 500));
     removeFromCart(item.id);
-    toast.success("Item added to cart!");
+    toast.success("Item has been removed from cart!");
   };
 
   return (
