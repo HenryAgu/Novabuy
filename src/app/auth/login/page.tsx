@@ -1,3 +1,5 @@
+import GoogleSignup from "@/components/auth/google-signup";
+import { LoginForm } from "@/components/auth/login-form";
 import { Button } from "@/components/ui/button";
 import { Rubik } from "next/font/google";
 import Image from "next/image";
@@ -10,10 +12,7 @@ const rubik = Rubik({
 
 const LoginPage = () => {
   return (
-    <div
-      className="p-5 lg:px-20 lg:py-13 min-h-screen lg:h-full"
-
-    >
+    <div className="p-5 lg:px-20 lg:py-13 min-h-screen lg:h-full">
       <Image
         src="/icons/Logo2.svg"
         alt="logo"
@@ -21,21 +20,20 @@ const LoginPage = () => {
         height={42}
         className="aspect-square"
       />
-      <div
-        className="flex flex-col gap-y-2 my-10 max-w-[393px]"
-      >
-        <p className="text-4xl font-bold text-neutral-600 leading-[150%]">
+      <div className="flex flex-col gap-y-2 my-10 max-w-[393px]">
+        <p className="text-2xl lg:text-4xl font-bold text-neutral-600 lg:leading-[150%]">
           Welcome Back!
         </p>
         <p
-          className={`${rubik.className} text-base font-normal text-neutral-400 leading-[150%]`}
+          className={`${rubik.className} lg:text-base font-normal text-neutral-400 lg:leading-[150%] text-sm`}
         >
           Please enter your credentials to access your account and explore our
           latest products.
         </p>
       </div>
       <div className="">
-        <Button>Login with Google</Button>
+        <GoogleSignup />
+        <LoginForm/>
       </div>
     </div>
   );
