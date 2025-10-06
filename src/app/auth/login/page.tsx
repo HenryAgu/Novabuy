@@ -12,15 +12,15 @@ const rubik = Rubik({
 
 const LoginPage = () => {
   return (
-    <div className="p-5 lg:px-20 lg:py-13 min-h-screen lg:h-full">
+    <div className="px-5 py-8 lg:px-20 lg:py-13 min-h-screen lg:h-full">
       <Image
         src="/icons/Logo2.svg"
         alt="logo"
         width={42}
         height={42}
-        className="aspect-square"
+        className="aspect-square lg:h-10.5 lg:w-10.5 h-8 w-8"
       />
-      <div className="flex flex-col gap-y-2 my-10 max-w-[393px]">
+      <div className="flex flex-col gap-y-2 my-8 lg:my-10 max-w-[393px]">
         <p className="text-2xl lg:text-4xl font-bold text-neutral-600 lg:leading-[150%]">
           Welcome Back!
         </p>
