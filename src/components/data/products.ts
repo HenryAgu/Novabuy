@@ -6,7 +6,7 @@ export const products: ProductCard[] = [
     id: crypto.randomUUID(),
     name: "men",
     image: "/images/item1.png",
-    link: "/men",
+    link: "/products/men",
   },
   {
     id: crypto.randomUUID(),

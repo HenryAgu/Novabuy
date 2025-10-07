@@ -12,7 +12,6 @@ const DeliveryPage = async () => {
   if (error || !data?.user) {
     redirect("/auth/login");
   }
-  console.log(data);
 
   return (
     <div className="">
