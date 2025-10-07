@@ -48,3 +48,16 @@ export async function signup(_prevState: unknown, formData: FormData) {
   revalidatePath("/", "layout");
   return { success: true } as const;
 }
+
+export async function logout() {
+  const supabase = await createClient();
+
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    return { error: error.message } as const;
+  }
+
+  revalidatePath("/", "layout");
+  return { success: true } as const;
+}

@@ -9,9 +9,11 @@ import {
 } from "../ui/dropdown-menu";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 const AvatarDropdown = () => {
   const supabase = createClient();
+  const router = useRouter();
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
@@ -22,6 +24,11 @@ const AvatarDropdown = () => {
     getUser();
   }, [supabase]);
 
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.push("/auth/login");
+  };
+
   return (
     <DropdownMenuContent>
       <DropdownMenuLabel className="text-sm font-normal text-neutral-500">
@@ -29,13 +36,10 @@ const AvatarDropdown = () => {
       </DropdownMenuLabel>
       <DropdownMenuSeparator />
       {user ? (
-        <DropdownMenuItem>
-          <Link
-            href="/delivery"
-            className="text-sm font-normal text-neutral-500"
-          >
-            My delivery
-          </Link>
+        <DropdownMenuItem onClick={handleSignOut}>
+          <span className="text-sm font-normal text-neutral-500">
+            Sign out
+          </span>
         </DropdownMenuItem>
       ) : (
         <DropdownMenuItem>
