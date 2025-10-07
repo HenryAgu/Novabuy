@@ -8,13 +8,13 @@ import {
 } from "../ui/carousel";
 import { ProductCard } from "../types";
 import ProductCardItem from "../product-card-item";
+import { carouselProducts } from "../data/products";
 
 interface CarouselSectionProps {
   title: string;
-  products: ProductCard[];
 }
 
-const CarouselSectionProducts = ({ title, products }: CarouselSectionProps) => {
+const CarouselSectionProducts = ({ title }: CarouselSectionProps) => {
   return (
     <section className="lg:px-24 lg:py-15 px-5 py-8 flex flex-col gap-y-4 lg:gap-y-8">
       <Carousel
@@ -34,7 +34,7 @@ const CarouselSectionProducts = ({ title, products }: CarouselSectionProps) => {
         </div>
         <div className="flex flex-col">
           <CarouselContent className="">
-            {products.map((item, index) => (
+            {carouselProducts.map((item, index) => (
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                 <ProductCardItem item={item} />
               </CarouselItem>

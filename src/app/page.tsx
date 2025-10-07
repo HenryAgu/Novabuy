@@ -10,7 +10,6 @@ import Navbar from "@/components/navbar";
 import { useEffect, useState } from "react";
 import SwiperProducts from "@/components/home/swiper-products";
 import CarouselSectionProducts from "@/components/home/carousel-section-products";
-import { carouselProducts, products, swiperProducts } from "@/components/data/products";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -33,14 +32,13 @@ export default function Home() {
       <div className="min-h-screen">
         <Hero />
         <Carousel />
-        <WhoFor title="WHO ARE YOU SHOPPING FOR?" products={products} />
+        <WhoFor title="WHO ARE YOU SHOPPING FOR?" />
         <CarouselSectionProducts
           title="TRENDING PRODUCTS"
-          products={carouselProducts}
         />
         <FeaturedProducts />
-        <SwiperProducts title="NEW PRODUCTS" products={swiperProducts} />
-        <SwiperProducts title="SPECIAL OFFERS" products={swiperProducts} />
+        <SwiperProducts title="NEW PRODUCTS" />
+        <SwiperProducts title="SPECIAL OFFERS" />
         <NovabuyNews />
       </div>
       <Footer />

@@ -1,14 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { ProductCard } from "../types";
+import { products } from "../data/products";
 
 interface WhoForProps{
   title: string;
-  products: ProductCard[];
 }
 
-const WhoFor = ({title, products}:WhoForProps) => {
+const WhoFor = ({title}:WhoForProps) => {
   return (
     <section className="px-5 lg:px-24 py-8 lg:py-15 flex flex-col gap-y-4 lg:gap-y-8">
       <p className="text-black font-bold text-lg lg:text-[26px] lg:leading-[150%]">
