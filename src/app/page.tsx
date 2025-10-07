@@ -6,7 +6,7 @@ import Hero from "@/components/home/hero";
 import NovabuyNews from "@/components/home/novabuy-news";
 import WhoFor from "@/components/home/who-for";
 import Loading from "@/components/loading";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbar/navbar";
 import { useEffect, useState } from "react";
 import SwiperProducts from "@/components/home/swiper-products";
 import CarouselSectionProducts from "@/components/home/carousel-section-products";
@@ -33,9 +33,7 @@ export default function Home() {
         <Hero />
         <Carousel />
         <WhoFor title="WHO ARE YOU SHOPPING FOR?" />
-        <CarouselSectionProducts
-          title="TRENDING PRODUCTS"
-        />
+        <CarouselSectionProducts title="TRENDING PRODUCTS" />
         <FeaturedProducts />
         <SwiperProducts title="NEW PRODUCTS" />
         <SwiperProducts title="SPECIAL OFFERS" />

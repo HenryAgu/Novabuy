@@ -61,7 +61,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sora.className} antialiased w-full mx-auto [@media(min-width:1920px)]:max-w-[1440px]`}
+        className={`${sora.className} antialiased w-full mx-auto [@media(min-width:1920px)]:max-w-[1440px] overflow-x-hidden`}
       >
         <CounterStoreProvider>
           <CartStoreProvider>

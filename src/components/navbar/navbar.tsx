@@ -2,20 +2,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import ShoppingBag from "./icons/shoppingBag";
-import User from "./icons/user";
-import SearchIcon from "./icons/searchIcon";
-import MenuIcon from "./icons/menu-icon";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetTitle,
-  SheetTrigger,
-} from "./ui/sheet";
-import CloseIcon from "./icons/close-icon";
-import ShopBag from "./shopping-bag/shop-bag";
+import ShoppingBag from "../icons/shoppingBag";
+import User from "../icons/user";
+import SearchIcon from "../icons/searchIcon";
+import MenuIcon from "../icons/menu-icon";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "../ui/sheet";
+import CloseIcon from "../icons/close-icon";
+import ShopBag from "../shopping-bag/shop-bag";
 import { useCartStore } from "@/stores/cart-stores";
+import { DropdownMenu, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import AvatarDropdown from "./avatar-dropdown";
 
 interface NavMenu {
   name?: string;
@@ -51,7 +47,7 @@ const navMenu: NavMenu[] = [
 
 const Navbar = () => {
   const totalItems = useCartStore((state) => state.items);
-  
+
   return (
     <nav className="flex items-center justify-between py-5 lg:py-6 px-5 lg:px-24">
       <Link href="/">
@@ -67,13 +63,18 @@ const Navbar = () => {
       <ul className="hidden lg:flex items-center gap-12">
         {navMenu.map((item) => (
           <li key={item.name}>
-            <Link href={item.link}>{item.name}</Link>
+            <Link
+              href={item.link}
+              className="text-sm lg:text-base font-normal text-neutral-500"
+            >
+              {item.name}
+            </Link>
           </li>
         ))}
       </ul>
-      <div className="flex items-center gap-5 lg:gap-10">
+      <div className="flex items-center gap-2.5 lg:gap-5">
         <Sheet>
-          <SheetTrigger className="relative">
+          <SheetTrigger>
             <ShoppingBag />
             {totalItems.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -83,10 +84,13 @@ const Navbar = () => {
           </SheetTrigger>
           <ShopBag />
         </Sheet>
-        <button>
-          <User />
-        </button>
-        <button className="hidden lg:flex">
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <User />
+          </DropdownMenuTrigger>
+          <AvatarDropdown />
+        </DropdownMenu>
+        <button className="hidden lg:block">
           <SearchIcon />
         </button>
         <Sheet>
@@ -114,7 +118,12 @@ const MobileMenu = () => {
         <ul className="flex flex-col gap-6 text-lg">
           {navMenu.map((item) => (
             <li key={item.name}>
-              <Link href={item.link}>{item.name}</Link>
+              <Link
+                href={item.link}
+                className="text-sm font-normal text-neutral-500"
+              >
+                {item.name}
+              </Link>
             </li>
           ))}
         </ul>

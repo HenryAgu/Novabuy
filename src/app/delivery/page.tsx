@@ -1,7 +1,7 @@
 import Items from "@/components/check-out/summary-items";
 import DeliveryForm from "@/components/delivery/delivery-form";
 import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbar/navbar";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import React from "react";
