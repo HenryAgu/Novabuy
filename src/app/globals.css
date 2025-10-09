@@ -161,6 +161,16 @@
     @apply border-border outline-ring/50;
   }
   body {
+    @apply !min-w-full;
     @apply bg-background text-foreground;
   }
+}
+
+html{
+  scroll-behavior: smooth;
+  @apply overflow-x-hidden;
+}
+
+html,body{
+  overflow-x: hidden;
 }

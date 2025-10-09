@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import { Rubik } from "next/font/google";
 import AddToBag from "./add-to-bag";
+import { ProductCard } from "../types";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -34,17 +35,18 @@ const sizes = [
 
 type ProductDetailsProps = {
   id: string;
+  product: ProductCard;
 };
 
-const ProductDetails = ({id}:ProductDetailsProps) => {
+const ProductDetails = ({id, product}:ProductDetailsProps) => {
   return (
     <aside className="basis-[50%] lg:p-2.5 flex flex-col gap-y-3.5 lg:gap-y-7">
       <div className="flex flex-col gap-y-3">
         <p className="text-lg lg:text-[23px] font-bold text-neutral-600 lg:leading-[150%]">
-          The NovaGlam Shoe
+          {product.name}
         </p>
         <p className="text-lg lg:text-[23px] font-semibold text-neutral-600 lg:leading-[150%]">
-          $ 81,500
+          $ {product.price?.toLocaleString()}
         </p>
       </div>
       <p
