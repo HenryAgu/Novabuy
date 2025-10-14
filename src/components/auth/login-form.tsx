@@ -19,10 +19,10 @@ import { Rubik } from "next/font/google";
 import Eye from "../icons/eye";
 import EyeSlash from "../icons/eye-slash";
 import { useEffect, useState } from "react";
-import { login } from "@/app/auth/login/action";
 import { useActionState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { UserAuth } from "../context/auth-context";
 
 // ✅ Schema
 const formSchema = z.object({
@@ -49,24 +49,33 @@ export function LoginForm() {
     },
   });
 
-  // Using server action via useActionState to handle client toasts and redirects
-  const router = useRouter();
-  const [state, formAction, pending] = useActionState(login, null);
-  useEffect(() => {
-    if (!state) return;
-    if ("error" in state && state?.error) {
-      toast.error(state.error);
-    } else if ("success" in state && state.success) {
-      toast.success("Logged in!");
-      router.replace("/delivery");
-    }
-  }, [state, router]);
-
   const [showPassword, setShowPassword] = useState(false);
+
+  const { signIn } = UserAuth();
+  const router = useRouter();
+
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    try {
+      await signIn(data.email, data.password);
+      toast.success("Login successful!");
+      form.reset();
+      router.push("/delivery");
+    } catch (error: unknown) {
+      console.error(error);
+      if (error instanceof Error) {
+        toast.error(error.message || "Failed to login");
+      } else {
+        toast.error("Failed to Login");
+      }
+    }
+  };
 
   return (
     <Form {...form}>
-      <form action={formAction} className="flex flex-col gap-y-2.5 lg:gap-y-5 my-4 lg:my-8">
+      <form
+        className="flex flex-col gap-y-2.5 lg:gap-y-5 my-4 lg:my-8"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
         {/* Email */}
         <FormField<z.infer<typeof formSchema>, "email">
           control={form.control}
@@ -98,7 +107,10 @@ export function LoginForm() {
                     className="border-0 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
                   />
 
-                  <button type="button" onClick={() => setShowPassword((v) => !v)}>
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((v) => !v)}
+                  >
                     {showPassword ? <EyeSlash /> : <Eye />}
                   </button>
                 </div>
@@ -111,9 +123,8 @@ export function LoginForm() {
         <Button
           type="submit"
           className="mt-5 py-5 rounded-[50px] text-sm lg:text-base bg-primary-500 cursor-pointer"
-          disabled={pending}
         >
-          {pending ? "Logging in..." : "Login"}
+Login
         </Button>
       </form>
       <p

@@ -18,10 +18,10 @@ import Link from "next/link";
 import { Rubik } from "next/font/google";
 import Eye from "../icons/eye";
 import EyeSlash from "../icons/eye-slash";
-import { useEffect, useState, useActionState } from "react";
-import { signup } from "@/app/auth/login/action";
+import { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { UserAuth } from "../context/auth-context";
 
 // ✅ Schema
 const formSchema = z.object({
@@ -51,23 +51,34 @@ export function SignUpForm() {
       password: "",
     },
   });
-  
+
   const [showPassword, setShowPassword] = useState(false);
+
+  const { createUser } = UserAuth();
   const router = useRouter();
-  const [state, formAction, pending] = useActionState(signup, null);
-  useEffect(() => {
-    if (!state) return;
-    if ("error" in state && state?.error) {
-      toast.error(state.error);
-    } else if ("success" in state && state.success) {
-      toast.success("Account created!");
-      router.replace("/delivery");
+
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    try {
+      await createUser(data.email, data.password);
+      toast.success("Account created successfully");
+      form.reset();
+      router.push("/delivery");
+    } catch (error: unknown) {
+      console.error(error);
+      if (error instanceof Error) {
+        toast.error(error.message || "Failed to create an account");
+      } else {
+        toast.error("Failed to create an account");
+      }
     }
-  }, [state, router]);
+  };
 
   return (
     <Form {...form}>
-      <form action={formAction} className="flex flex-col gap-y-2.5 lg:gap-y-5 my-4 lg:my-8">
+      <form
+        className="flex flex-col gap-y-2.5 lg:gap-y-5 my-4 lg:my-8"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
         {/* Name */}
         <FormField<z.infer<typeof formSchema>, "name">
           control={form.control}
@@ -130,9 +141,9 @@ export function SignUpForm() {
         <Button
           type="submit"
           className="mt-5 py-5 rounded-[50px] text-sm lg:text-base bg-primary-500 cursor-pointer"
-          disabled={pending}
         >
-          {pending ? "Creating account..." : "Sign Up"}
+          {/* {pending ? "Creating account..." : "Sign Up"} */}
+          Sign Up
         </Button>
       </form>
       <p

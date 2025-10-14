@@ -4,6 +4,7 @@ import "./globals.css";
 import { CounterStoreProvider } from "@/providers/counter-store-providers";
 import { CartStoreProvider } from "@/providers/cart-store-providers";
 import { Toaster } from "@/components/ui/sonner";
+import { AuthContextProvider } from "@/components/context/auth-context";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -65,10 +66,10 @@ export default function RootLayout({
       >
         <CounterStoreProvider>
           <CartStoreProvider>
-            {children}
+            <AuthContextProvider>{children}</AuthContextProvider>
           </CartStoreProvider>
         </CounterStoreProvider>
-        <Toaster/>
+        <Toaster />
       </body>
     </html>
   );

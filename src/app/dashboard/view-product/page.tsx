@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProductPage = () => {
+const ViewProductPage = () => {
   return (
     <div>
       This is Admin Product Page    .
@@ -8,4 +8,4 @@ const ProductPage = () => {
   )
 }
 
-export default ProductPage
+export default ViewProductPage

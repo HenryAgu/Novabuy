@@ -37,9 +37,11 @@ const AdminForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    if (data.password === "admin@123" && data.username === "admin") {
-      localStorage.setItem("isAdmin", "true");
-      redirect("/dashboard/product");
+    const adminUsername = process.env.NEXT_PUBLIC_ADMIN_USERNAME;
+    const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
+    if (data.password === adminPassword && data.username === adminUsername) {
+      toast.success("Admin login successful!")
+      redirect("/dashboard/view-product");
     } else {
       toast.error("Invalid Credentials");
     }
