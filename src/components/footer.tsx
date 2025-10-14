@@ -51,6 +51,7 @@ const getHelp: FooterMenu[] = [
   { title: "Payment Option", link: "" },
   { title: "FAQs", link: "" },
   { title: "Contact Us", link: "" },
+  { title: "Admin", link: "/auth/admin" },
 ];
 
 const aboutNovabuy: FooterMenu[] = [
@@ -93,7 +94,9 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex flex-col gap-y-2.5 lg:gap-y-5">
-            <p className="font-bold text-base lg:text-lg lg:leading-[150%]">About Novabuy</p>
+            <p className="font-bold text-base lg:text-lg lg:leading-[150%]">
+              About Novabuy
+            </p>
             <div className="flex flex-col gap-y-2 lg:gap-y-4">
               {aboutNovabuy.map((item) => (
                 <Link
@@ -107,12 +110,14 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex flex-col gap-y-2.5 lg:gap-y-5">
-            <p className="font-bold lg:text-lg lg:leading-[150%] text-base">Store Locator</p>
+            <p className="font-bold lg:text-lg lg:leading-[150%] text-base">
+              Store Locator
+            </p>
             <div className="flex flex-col gap-y-4">
               {storeLocator.map((item) => (
                 <Link
                   href={item.link}
-                    key={item.title}
+                  key={item.title}
                   className={`${rubik.className} text-base font-normal`}
                 >
                   {item.title}
@@ -121,7 +126,9 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex flex-col gap-y-2.5 lg:gap-y-5">
-            <p className="font-bold lg:text-lg lg:leading-[150%] text-base">Legal</p>
+            <p className="font-bold lg:text-lg lg:leading-[150%] text-base">
+              Legal
+            </p>
             <div className="flex flex-col gap-y-4">
               {legal.map((item) => (
                 <Link

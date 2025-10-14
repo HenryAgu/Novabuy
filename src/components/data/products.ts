@@ -3,7 +3,7 @@ import { ProductCard } from "../types";
 
 export const products: ProductCard[] = [
   {
-    id: crypto.randomUUID(),
+    id: 1,
     name: "men",
     image: "/images/item1.png",
     link: "/products/men",
@@ -24,7 +24,7 @@ export const products: ProductCard[] = [
 
 export const swiperProducts: ProductCard[] = [
   {
-    id: crypto.randomUUID(),
+    id: 1,
     name: "men",
     image: "/images/item4.png",
     link: "",
@@ -83,7 +83,7 @@ export const swiperProducts: ProductCard[] = [
 
 export const carouselProducts: ProductCard[] = [
   {
-    id: crypto.randomUUID(),
+    id: 1,
     name: "men",
     image: "/images/item4.png",
     link: "",

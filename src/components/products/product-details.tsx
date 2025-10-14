@@ -35,18 +35,20 @@ const sizes = [
 
 type ProductDetailsProps = {
   id: string;
-  product: ProductCard;
+  // product: ProductCard;
 };
 
-const ProductDetails = ({id, product}:ProductDetailsProps) => {
+const ProductDetails = ({id}:ProductDetailsProps) => {
   return (
     <aside className="basis-[50%] lg:p-2.5 flex flex-col gap-y-3.5 lg:gap-y-7">
       <div className="flex flex-col gap-y-3">
         <p className="text-lg lg:text-[23px] font-bold text-neutral-600 lg:leading-[150%]">
-          {product.name}
+          {/* {product.name} */}
+          The NovaGlam Shoe
         </p>
         <p className="text-lg lg:text-[23px] font-semibold text-neutral-600 lg:leading-[150%]">
-          $ {product.price?.toLocaleString()}
+          {/* $ {product.price?.toLocaleString()} */}
+          $ 140,500
         </p>
       </div>
       <p
