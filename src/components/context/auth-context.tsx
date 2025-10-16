@@ -1,7 +1,10 @@
 "use client";
 import React, { createContext, useContext, useEffect } from "react";
-import { User } from "firebase/auth";
 import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+  User,
   createUserWithEmailAndPassword,
   signOut,
   signInWithEmailAndPassword,
@@ -12,6 +15,7 @@ import { auth } from "@/lib/firebase";
 interface AuthContextType {
   createUser: (email: string, password: string) => Promise<any>;
   signIn: (email: string, password: string) => Promise<any>;
+  signInWithGoogle: () => Promise<any>;
   user: User | null;
   logout: () => Promise<void>;
 }
@@ -28,6 +32,11 @@ export const AuthContextProvider = ({
   const createUser = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
+
+  const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider);
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -48,7 +57,7 @@ export const AuthContextProvider = ({
   };
 
   return (
-    <UserContext.Provider value={{ createUser, user, logout, signIn }}>
+    <UserContext.Provider value={{ createUser, user, logout, signIn, signInWithGoogle }}>
       {children}
     </UserContext.Provider>
   );
