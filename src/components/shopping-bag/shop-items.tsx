@@ -23,7 +23,7 @@ const ShopItems = () => {
   const items = useCartStore((state) => state.items);
 
   return (
-    <div className="basis-[50%]">
+    <div className="basis-[50%] px-5 lg:px-0">
       <p className={`font-bold text-lg text-neutral-600 leading-[150%]`}>
         Shopping Bag
       </p>

@@ -18,7 +18,7 @@ const SummaryItems = () => {
       const total = subtotal + shipping + taxes;
        const totalItems = getTotalItems();
   return (
-    <div>
+    <div className="px-5 lg:px-0">
       <p className={`font-bold text-lg text-neutral-600 leading-[150%]`}>
         Summary
       </p>

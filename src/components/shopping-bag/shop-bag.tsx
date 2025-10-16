@@ -11,7 +11,7 @@ const ShopBag = () => {
     <div>
       <SheetContent
         side="top"
-        className="w-full max-w-full h-full lg:w-full lg:max-w-full py-5  pb-12 lg:py-12 px-5 lg:px-24 mx-auto"
+        className="w-full max-w-full h-full lg:w-full lg:max-w-full py-5  pb-12 lg:py-12 lg:px-24 mx-auto"
       >
         <SheetTitle className="flex items-center justify-between">
           <div />

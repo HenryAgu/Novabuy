@@ -7,7 +7,7 @@ const Total = () => {
   const totalItems = getTotalItems();
 
   return (
-    <div className="w-full">
+    <div className="w-full px-5 lg:px-0">
       {totalItems > 0 && (
         <Link
           href="/delivery"
