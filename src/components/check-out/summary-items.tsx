@@ -22,7 +22,7 @@ const SummaryItems = () => {
       <p className={`font-bold text-lg text-neutral-600 leading-[150%]`}>
         Summary
       </p>
-      <ScrollArea className="my-5 max-w-full lg:max-w-[500px] lg:h-fit lg:max-h-[70vh] h-[20vh]">
+      <ScrollArea className="my-5 max-w-full lg:max-w-[500px] lg:h-fit lg:max-h-[70vh] h-full">
         <div className="flex flex-col gap-y-5">
           <div className="flex items-center justify-between">
             <p

@@ -10,7 +10,7 @@ const DeliveryPage = () => {
     <ProtectedRoute>
       <div className="">
         <Navbar />
-        <main className="flex lg:flex-row flex-col lg:gap-x-20 min-h-screen lg:px-24 lg:py-10 px-5 py-8">
+        <main className="flex lg:flex-row flex-col lg:gap-x-20 gap-y-10 lg:min-h-screen lg:px-24 lg:py-10 px-5 py-8">
           <div className="basis-[60%]">
             <DeliveryForm />
           </div>
