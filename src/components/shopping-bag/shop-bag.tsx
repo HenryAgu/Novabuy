@@ -13,7 +13,7 @@ const ShopBag = () => {
         side="top"
         className="w-full max-w-full h-full lg:w-full lg:max-w-full py-5  pb-12 lg:py-12 lg:px-24 mx-auto"
       >
-        <SheetTitle className="flex items-center justify-between">
+        <SheetTitle className="flex items-center justify-between px-5 lg:px-0">
           <div />
           <SheetClose>
             <CloseIcon />
