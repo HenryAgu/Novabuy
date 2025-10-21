@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { db } from "@/lib/firebase"; 
+import { db } from "@/lib/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { toast } from "sonner"; 
+import { toast } from "sonner";
 
 const AddProductPage = () => {
   const [loading, setLoading] = useState(false);
@@ -11,7 +11,8 @@ const AddProductPage = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
     try {
@@ -25,7 +26,7 @@ const AddProductPage = () => {
       });
 
       toast.success("Product added successfully!");
-      e.currentTarget.reset(); // clear the form after submission
+      form.reset(); // clear the form after submission
     } catch (error) {
       console.error("Error adding product:", error);
       toast.error("Failed to add product!");
@@ -33,6 +34,7 @@ const AddProductPage = () => {
       setLoading(false);
     }
   };
+
 
   return (
     <main className="flex flex-col gap-y-8 p-6">
@@ -55,6 +57,10 @@ const AddProductPage = () => {
             required
           />
         </div>
+        {/* <div className="flex flex-col gap-y-2">
+          <label htmlFor="image">Image:</label>
+          <input type="file" name="image" id="" required/>
+        </div> */}
 
         <div className="flex flex-col gap-y-2">
           <label htmlFor="price">Price:</label>

@@ -14,20 +14,21 @@ const ProductCardComponent = ({ product }: ProductCardProps) => {
     <div className="p-3 flex flex-col gap-y-2 border border-accent rounded-lg">
       <div className="relative">
         <Image
-          src={product.image}
+          src={product.image ?? "/images/broken-image.png"}
           alt="image"
           width={573}
           height={220}
           className="w-full h-[220px] object-cover rounded-lg"
         />
         <div className="absolute top-5 right-5">
-          <Button variant="ghost" className="bg-accent/100">
+          <Button variant="ghost" className="bg-accent/100 cursor-pointer">
             <DeleteIcon />
           </Button>
         </div>
       </div>
       <div className="flex flex-col gap-y-2.5">
-        <p className="text-lg font-semibold text-neutral-600">{product.name}</p>
+        <p className="text-lg font-semibold text-neutral-600 capitalize">{product.name}</p>
+        <p className="text-base font-medium text-neutral-600">$ {product?.price?.toLocaleString()}</p>
         <div className="flex items-center gap-x-2.5">
           <Link
             href="/dashboard/edit-product"

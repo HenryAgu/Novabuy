@@ -30,7 +30,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   return (
     <>
       {/* Desktop */}
-      <main className="hidden lg:flex h-screen">
+      <main className="hidden md:flex h-screen">
         <aside className="basis-[20%] bg-white p-5 pb-10 flex flex-col justify-between border-r border-r-accent">
           <div className="flex flex-col gap-y-24">
             <Image
