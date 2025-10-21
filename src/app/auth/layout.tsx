@@ -11,7 +11,8 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
       <div className="basis-[100%] lg:basis-[50%] min-h-screen">{children}</div>
       <div className="hidden lg:flex basis-[50%]">
         <Image
-          src="/images/login.png"
+        priority
+          src="/images/login.webp"
           alt="login-page"
           width={760}
           height={1040}
