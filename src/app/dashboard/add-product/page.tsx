@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import { db } from "@/lib/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { toast } from "sonner";
+import ImageUpload from "@/components/image-upload/image-upload";
 
 const AddProductPage = () => {
   const [loading, setLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -15,18 +17,25 @@ const AddProductPage = () => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
+    if (!imageUrl) {
+      toast.error("Please upload a product image!");
+      return;
+    }
+
     try {
       setLoading(true);
 
-      // ✅ Add to Firestore
+      // ✅ Add to Firestore including image URL
       await addDoc(collection(db, "products"), {
         ...data,
         price: Number(data.price),
+        image: imageUrl, 
         createdAt: serverTimestamp(),
       });
 
       toast.success("Product added successfully!");
-      form.reset(); // clear the form after submission
+      form.reset();
+      setImageUrl(""); 
     } catch (error) {
       console.error("Error adding product:", error);
       toast.error("Failed to add product!");
@@ -34,7 +43,6 @@ const AddProductPage = () => {
       setLoading(false);
     }
   };
-
 
   return (
     <main className="flex flex-col gap-y-8 p-6">
@@ -57,10 +65,9 @@ const AddProductPage = () => {
             required
           />
         </div>
-        {/* <div className="flex flex-col gap-y-2">
-          <label htmlFor="image">Image:</label>
-          <input type="file" name="image" id="" required/>
-        </div> */}
+
+        {/* 👇 Pass handler to receive uploaded image URL */}
+        <ImageUpload onUpload={setImageUrl} />
 
         <div className="flex flex-col gap-y-2">
           <label htmlFor="price">Price:</label>
