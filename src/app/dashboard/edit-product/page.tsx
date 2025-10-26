@@ -1,6 +1,7 @@
+// components/dashboard/edit-product-page.tsx
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import ImageUpload from "@/components/image-upload/image-upload";
@@ -27,28 +28,24 @@ const EditProductPage = () => {
   const productId = searchParams.get("id");
 
   useEffect(() => {
-    const fetchProduct = () => {
-      if (!productId) {
-        toast.error("No product ID provided");
-        router.push("/dashboard/view-product");
-        return;
-      }
+    if (!productId) {
+      toast.error("No product ID provided");
+      router.push("/dashboard/view-product");
+      return;
+    }
 
-      const productData = getProductById(productId);
-      
-      if (!productData) {
-        toast.error("Product not found");
-        router.push("/dashboard/view-product");
-        return;
-      }
+    const productData = getProductById(productId);
 
-      setProduct(productData);
-      setImageUrl(productData.image || "");
-      setFetching(false);
-    };
+    if (!productData) {
+      toast.error("Product not found");
+      router.push("/dashboard/view-product");
+      return;
+    }
 
-    fetchProduct();
-  }, [productId, router]);
+    setProduct(productData);
+    setImageUrl(productData.image || "");
+    setFetching(false);
+  }, [productId, router, getProductById]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,8 +55,7 @@ const EditProductPage = () => {
       return;
     }
 
-    const form = e.currentTarget;
-    const formData = new FormData(form);
+    const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
 
     if (!imageUrl) {
@@ -75,7 +71,6 @@ const EditProductPage = () => {
         description: data.description as string,
         category: data.category as string,
       });
-
       router.push("/dashboard/view-product");
     } catch (error) {
       console.error("Error updating product:", error);
@@ -130,14 +125,12 @@ const EditProductPage = () => {
             id="name"
             type="text"
             name="name"
-            placeholder="Enter product name"
             className="border p-2 rounded"
             defaultValue={product.name}
             required
           />
         </div>
 
-        {/* Image Upload - show current image if exists */}
         <div className="flex flex-col gap-y-2">
           <label>Product Image:</label>
           {product.image && (
@@ -150,9 +143,7 @@ const EditProductPage = () => {
               />
             </div>
           )}
-          <Suspense fallback={<Spinner size={20} />}>
-            <ImageUpload onUpload={setImageUrl} />
-          </Suspense>
+          <ImageUpload onUpload={setImageUrl} />
           <p className="text-sm text-gray-500">
             {imageUrl ? "New image selected" : "Upload a new image or keep current"}
           </p>
@@ -164,7 +155,6 @@ const EditProductPage = () => {
             id="price"
             type="number"
             name="price"
-            placeholder="Enter price"
             className="border p-2 rounded"
             defaultValue={product.price}
             required
@@ -177,7 +167,6 @@ const EditProductPage = () => {
             id="description"
             type="text"
             name="description"
-            placeholder="Enter product description"
             className="border p-2 rounded"
             defaultValue={product.description || ""}
           />
