@@ -1,14 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import { db } from "@/lib/firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { toast } from "sonner";
 import ImageUpload from "@/components/image-upload/image-upload";
+import { Spinner } from "@/components/status/spinner";
+import { useProducts } from "@/components/context/products-context";
+import { useRouter } from "next/navigation";
 
 const AddProductPage = () => {
-  const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>("");
+  const { addProduct, loading } = useProducts();
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,24 +25,19 @@ const AddProductPage = () => {
     }
 
     try {
-      setLoading(true);
-
-      // ✅ Add to Firestore including image URL
-      await addDoc(collection(db, "products"), {
-        ...data,
+      await addProduct({
+        name: data.name as string,
         price: Number(data.price),
-        image: imageUrl, 
-        createdAt: serverTimestamp(),
+        image: imageUrl,
+        description: data.description as string,
+        category: data.category as string,
       });
 
-      toast.success("Product added successfully!");
       form.reset();
-      setImageUrl(""); 
+      setImageUrl("");
+      router.push("/dashboard/view-product");
     } catch (error) {
       console.error("Error adding product:", error);
-      toast.error("Failed to add product!");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -102,6 +99,8 @@ const AddProductPage = () => {
           >
             <option value="">Select Category</option>
             <option value="shoe">Shoe</option>
+            <option value="men">Men</option>
+            <option value="women">Women</option>
             <option value="clothes">Clothes</option>
             <option value="accessories">Accessories</option>
           </select>
@@ -114,7 +113,7 @@ const AddProductPage = () => {
             loading ? "bg-gray-400" : "bg-black hover:bg-gray-800"
           } text-white py-2 px-4 rounded`}
         >
-          {loading ? "Submitting..." : "Submit"}
+          {loading ? (<Spinner size={10}/>) : "Submit"}
         </button>
       </form>
     </main>

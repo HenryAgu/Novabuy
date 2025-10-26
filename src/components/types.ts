@@ -4,4 +4,6 @@ export interface ProductCard {
   image: string;
   link?: string;
   price?: number;
+  category?: string;
+  description: string;
 }

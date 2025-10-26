@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 interface ImageUploadProps {
   onUpload: (url: string) => void;
@@ -7,17 +7,19 @@ interface ImageUploadProps {
 
 function ImageUpload({ onUpload }: ImageUploadProps) {
   const [image, setImage] = useState<string>("");
+  const [uploading, setUploading] = useState<boolean>(false);
 
-  const uploadImage = async (files: FileList | null) => {
+  const uploadImage = useCallback(async (files: FileList | null) => {
     if (!files || files.length === 0) return;
 
+    setUploading(true);
     const formData = new FormData();
     formData.append("file", files[0]);
-    formData.append("upload_preset", "novabuy"); // your preset
+    formData.append("upload_preset", "novabuy");
 
     try {
       const response = await fetch(
-        "https://api.cloudinary.com/v1_1/dkaav5etj/image/upload",
+        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`,
         {
           method: "POST",
           body: formData,
@@ -28,15 +30,16 @@ function ImageUpload({ onUpload }: ImageUploadProps) {
 
       if (data.secure_url) {
         setImage(data.secure_url);
-        onUpload(data.secure_url); // 👈 send image URL to parent
-        console.log("Uploaded image URL:", data.secure_url);
+        onUpload(data.secure_url); 
       } else {
         console.error("Upload failed:", data);
       }
     } catch (error) {
       console.error("Error uploading image:", error);
+    } finally {
+      setUploading(false);
     }
-  };
+  }, [onUpload]);
 
   return (
     <div className="flex flex-col gap-4 items-start">
@@ -45,7 +48,12 @@ function ImageUpload({ onUpload }: ImageUploadProps) {
         accept="image/*"
         onChange={(e) => uploadImage(e.target.files)}
         className="border p-2 rounded"
+        disabled={uploading}
       />
+
+      {uploading && (
+        <div className="text-sm text-gray-500">Uploading...</div>
+      )}
 
       {image && (
         <img

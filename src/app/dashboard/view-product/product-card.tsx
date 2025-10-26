@@ -10,31 +10,28 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { fetchProducts } from "@/lib/fetch-products";
-import { db } from "@/lib/firebase";
-import { deleteDoc, doc } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { toast } from "sonner";
+import { useProducts } from "@/components/context/products-context";
 
 type ProductCardProps = {
   product: ProductCard;
   refetch: () => void;
 };
 
-const handleDelete = async (id: string, refetch: () => void) => {
-  try {
-    await deleteDoc(doc(db, "products", id));
-    refetch();
-    toast.success("Product deleted successfully!");
-  } catch (error) {
-    console.error("Error deleting product:", error);
-    toast.error("Failed to delete product.");
-  }
-};
+const ProductCardComponent = ({ product, refetch }: ProductCardProps) => {
+  const { deleteProduct } = useProducts();
 
-const ProductCardComponent = ({ product,refetch }: ProductCardProps) => {
+  const handleDelete = async () => {
+    try {
+      await deleteProduct(String(product.id));
+      refetch();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
+
   return (
     <div className="p-3 flex flex-col gap-y-2 border border-accent rounded-lg shadow-xl">
       <div className="relative">
@@ -47,40 +44,48 @@ const ProductCardComponent = ({ product,refetch }: ProductCardProps) => {
         />
         <div className="absolute top-5 right-5">
           <Dialog>
-            <DialogTrigger>
+
+            <DialogTrigger asChild>
               <Button variant="ghost" className="bg-accent/100 cursor-pointer">
                 <DeleteIcon />
               </Button>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Are you absolutely sure?</DialogTitle>
-                  <DialogDescription>
-                    This action cannot be undone. This will permanently delete
-                    your account and remove your data from our servers.
-                  </DialogDescription>
-                  <div className="flex items-center gap-x-2.5 mt-5">
-                    <Button onClick={() => handleDelete(String(product.id),refetch)}>
-                      Delete
-                    </Button>
-                    <DialogClose>
-                      <Button type="button" variant="destructive">
-                        Cancel
-                      </Button>
-                    </DialogClose>
-                  </div>
-                </DialogHeader>
-              </DialogContent>
             </DialogTrigger>
+
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                <DialogDescription>
+                  This action cannot be undone. This will permanently delete
+                  your product and remove it from the database.
+                </DialogDescription>
+
+                <div className="flex items-center gap-x-2.5 mt-5">
+                  <Button onClick={handleDelete}>
+                    Delete
+                  </Button>
+
+                  <DialogClose asChild>
+                    <Button type="button" variant="destructive">
+                      Cancel
+                    </Button>
+                  </DialogClose>
+                </div>
+              </DialogHeader>
+            </DialogContent>
           </Dialog>
         </div>
       </div>
 
-      <div className="flex flex-col gap-y-2.5">
+      <div className="flex flex-col gap-y-1.5">
+        <span className="capitalize text-xs text-neutral-600">{product?.category}</span>
         <p className="text-lg font-semibold text-neutral-600 capitalize">
           {product.name}
         </p>
         <p className="text-base font-medium text-neutral-600">
-          $ {product?.price?.toLocaleString()}
+          $
+          {new Intl.NumberFormat("en-US", {
+            minimumFractionDigits: 0,
+          }).format(product?.price ?? 0)}
         </p>
 
         <div className="flex items-center gap-x-2.5">

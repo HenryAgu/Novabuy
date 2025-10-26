@@ -45,7 +45,6 @@ const AdminForm = () => {
     } else {
       toast.error("Invalid Credentials");
     }
-    console.log("Form Data:", data);
   };
 
   return (

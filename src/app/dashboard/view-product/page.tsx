@@ -1,41 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ProductCard from "./product-card";
-import { fetchProducts } from "@/lib/fetch-products";
-import Loading from "@/components/loading";
-
-interface Product {
-  id: string;
-  name: string;
-  image: string;
-  price: number;
-  description?: string;
-  category?: string;
-}
+import { Spinner } from "@/components/status/spinner";
+import { useProducts } from "@/components/context/products-context";
 
 const ViewProductPage = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  // ✅ Move loadProducts outside useEffect
-  const loadProducts = async () => {
-    try {
-      setLoading(true);
-      const data = await fetchProducts();
-      setProducts(data);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadProducts();
-  }, []);
+  const { products, loading, fetchProducts } = useProducts();
 
   if (loading) {
-    return <Loading />;
+    return (<div className="flex items-center justify-center h-screen"><Spinner size={50} /></div>);
   }
 
   return (
@@ -57,7 +30,7 @@ const ViewProductPage = () => {
             <ProductCard
               key={product.id}
               product={product}
-              refetch={loadProducts} // ✅ now properly passed
+              refetch={fetchProducts}
             />
           ))}
         </div>

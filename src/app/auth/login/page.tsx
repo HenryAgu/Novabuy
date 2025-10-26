@@ -2,6 +2,7 @@ import GoogleSignup from "@/components/auth/google-signup";
 import { LoginForm } from "@/components/auth/login-form";
 import { Rubik } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const rubik = Rubik({
@@ -12,13 +13,15 @@ const rubik = Rubik({
 const LoginPage = () => {
   return (
     <div className="px-5 py-8 lg:px-20 lg:py-13 min-h-screen lg:h-full">
-      <Image
-        src="/icons/Logo2.svg"
-        alt="logo"
-        width={42}
-        height={42}
-        className="aspect-square lg:h-10.5 lg:w-10.5 h-8 w-8"
-      />
+      <Link href="/">
+        <Image
+          src="/icons/Logo2.svg"
+          alt="logo"
+          width={42}
+          height={42}
+          className="aspect-square lg:h-10.5 lg:w-10.5 h-8 w-8"
+        />
+      </Link>
       <div className="flex flex-col gap-y-2 my-8 lg:my-10 max-w-[393px]">
         <p className="text-2xl lg:text-4xl font-bold text-neutral-600 lg:leading-[150%]">
           Welcome Back!
@@ -32,7 +35,7 @@ const LoginPage = () => {
       </div>
       <div className="">
         <GoogleSignup />
-        <LoginForm/>
+        <LoginForm />
       </div>
     </div>
   );
