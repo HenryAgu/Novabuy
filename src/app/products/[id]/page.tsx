@@ -4,6 +4,7 @@ import { useProducts } from "@/components/context/products-context";
 import ProductDetails from "@/components/products/product-details";
 import Image from "next/image";
 import React from "react";
+import ProductSkeleton from "@/components/products/product-skeleton";
 
 const ProductPage = () => {
   const params = useParams();
@@ -12,7 +13,11 @@ const ProductPage = () => {
   const { getProductById, loading } = useProducts();
   const product = getProductById(id);
 
-  console.log(product)
+  if(loading){
+    return(
+      <ProductSkeleton/>
+    )
+  }
 
   return (
     <main className="min-h-screen flex lg:flex-row flex-col gap-15 pr-5 pl-5 lg:pl-0 lg:pr-24 pb-14 lg:pb-28">

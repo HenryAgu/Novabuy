@@ -13,10 +13,10 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useProducts } from "@/components/context/products-context";
+import { Product, useProducts } from "@/components/context/products-context";
 
 type ProductCardProps = {
-  product: ProductCard;
+  product: Product;
   refetch: () => void;
 };
 
