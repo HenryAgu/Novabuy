@@ -10,7 +10,7 @@ import ProductCardItem from "../product-card-item";
 import { useProducts } from "../context/products-context";
 
 interface CarouselSectionProps {
-  title: string & { link: string };
+  title: string;
 }
 
 const CarouselSectionProducts = ({ title }: CarouselSectionProps) => {

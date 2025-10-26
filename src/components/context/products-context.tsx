@@ -20,6 +20,7 @@ export interface Product {
   name: string;
   image: string;
   price: number;
+  link?: string;
   description?: string;
   category?: string;
   createdAt?: any;
