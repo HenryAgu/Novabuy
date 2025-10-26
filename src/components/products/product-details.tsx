@@ -46,7 +46,7 @@ const ProductDetails = ({ id, product }: ProductDetailsProps) => {
           {product?.name ?? "--"}
         </p>
         <p className="text-lg lg:text-[23px] font-semibold text-neutral-600 lg:leading-[150%]">
-          $ {product?.price?.toLocaleString()}
+          ₦ {product?.price?.toLocaleString()}
         </p>
       </div>
       <p

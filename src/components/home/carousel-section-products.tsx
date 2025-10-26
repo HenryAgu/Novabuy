@@ -6,15 +6,32 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import { ProductCard } from "../types";
 import ProductCardItem from "../product-card-item";
-import { carouselProducts } from "../data/products";
+import { useProducts } from "../context/products-context";
 
 interface CarouselSectionProps {
-  title: string;
+  title: string & { link: string };
 }
 
 const CarouselSectionProducts = ({ title }: CarouselSectionProps) => {
+  const { products } = useProducts();
+  
+  // Filter products based on title for different sections
+  const getFilteredProducts = () => {
+    switch (title) {
+      case "TRENDING PRODUCTS":
+        return products.slice(0, 6); // First 6 products as trending
+      case "NEW PRODUCTS":
+        return products.slice(0, 8); // First 8 products as new
+      case "SPECIAL OFFERS":
+        return products.filter(p => p.price > 50000).slice(0, 6); // Products over 50k as special offers
+      default:
+        return products.slice(0, 6);
+    }
+  };
+
+  const filteredProducts = getFilteredProducts();
+
   return (
     <section className="lg:px-24 lg:py-15 px-5 py-8 flex flex-col gap-y-4 lg:gap-y-8">
       <Carousel
@@ -34,9 +51,15 @@ const CarouselSectionProducts = ({ title }: CarouselSectionProps) => {
         </div>
         <div className="flex flex-col">
           <CarouselContent className="">
-            {carouselProducts.map((item, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <ProductCardItem item={item} />
+            {filteredProducts.map((item, index) => (
+              <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
+                <ProductCardItem item={{
+                  id: item.id,
+                  name: item.name,
+                  image: item.image,
+                  link: `/products/${item.id}`,
+                  price: item.price
+                }} />
               </CarouselItem>
             ))}
           </CarouselContent>

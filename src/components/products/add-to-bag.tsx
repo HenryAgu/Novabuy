@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import { useCartStore } from "@/stores/cart-stores";
 import { toast } from "sonner";
+import { useProducts } from "../context/products-context";
 
 type ProductDetailsProps = {
   id: string;
@@ -9,24 +10,28 @@ type ProductDetailsProps = {
 
 const AddToBag = ({ id }: ProductDetailsProps) => {
   const addToCart = useCartStore((state) => state.addToCart);
+  const { getProductById } = useProducts();
   
-  // Mock product data - in a real app, this would come from an API or props
-  const mockProduct = {
-    id: id,
-    image: "/images/shoe1.png",
-    name: "The NovaGlam Shoe",
-    price: 81500,
-    size: 42, // Default size, in real app this would be selected by user
-  };
-
   const handleAddToCart = async () => {
+    const product = getProductById(id);
+    
+    if (!product) {
+      toast.error("Product not found!");
+      return;
+    }
 
-  await new Promise((resolve) => setTimeout(resolve, 500));
+    // Convert Firebase product to cart item format
+    const cartItem = {
+      id: product.id,
+      image: product.image,
+      name: product.name,
+      price: product.price,
+      size: 42, // Default size, in real app this would be selected by user
+    };
 
-  addToCart(mockProduct);
-
-
-  toast.success("Item added to cart!");
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    addToCart(cartItem);
+    toast.success("Item added to cart!");
   };
 
   return (

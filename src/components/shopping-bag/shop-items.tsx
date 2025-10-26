@@ -3,7 +3,7 @@ import DeleteIcon from "../icons/delete-icon";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { ScrollArea } from "../ui/scroll-area";
-import { ShopBag } from "../data/shop-bag";
+import { Product } from "../context/products-context";
 import { Rubik } from "next/font/google";
 import CircleMinus from "../icons/circle-minus";
 import CircleAdditon from "../icons/circle-additon";
@@ -16,7 +16,7 @@ const rubik = Rubik({
 });
 
 interface ItemProps {
-  item: ShopBag & { quantity: number };
+  item: Product & { quantity: number; size: number };
 }
 
 const ShopItems = () => {

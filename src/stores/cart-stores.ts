@@ -1,15 +1,16 @@
 // store/useCartStore.ts
-import { ShopBag } from "@/components/data/shop-bag";
+import { Product } from "@/components/context/products-context";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface CartItem extends ShopBag {
+interface CartItem extends Product {
   quantity: number;
+  size: number; // Add size field for cart items
 }
 
 interface CartState {
   items: CartItem[];
-  addToCart: (product: ShopBag) => void;
+  addToCart: (product: Product & { size: number }) => void;
   removeFromCart: (id: string) => void;
   clearCart: () => void;
   increaseQuantity: (id: string) => void;
@@ -25,11 +26,11 @@ export const useCartStore = create<CartState>()(
 
       addToCart: (product) =>
         set((state) => {
-          const existing = state.items.find((i) => i.id === product.id);
+          const existing = state.items.find((i) => i.id === product.id && i.size === product.size);
           if (existing) {
             return {
               items: state.items.map((i) =>
-                i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i
+                i.id === product.id && i.size === product.size ? { ...i, quantity: i.quantity + 1 } : i
               ),
             };
           }

@@ -2,9 +2,10 @@ import React from "react";
 import { ProductCard } from "./types";
 import Image from "next/image";
 import Link from "next/link";
+import { Product } from "./context/products-context";
 
 interface ProductCardProps {
-  item: ProductCard;
+  item: Product;
 }
 
 const ProductCardItem = ({ item }: ProductCardProps) => {
@@ -22,7 +23,7 @@ const ProductCardItem = ({ item }: ProductCardProps) => {
           {item.name}
         </p>
         <span className="text-neutral-300 text-sm lg:text-base font-semibold">
-           ${item.price?.toLocaleString("en-US")}
+           ₦ {item.price?.toLocaleString("en-US")}
         </span>
       </div>
     </Link>
