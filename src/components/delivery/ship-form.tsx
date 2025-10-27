@@ -50,14 +50,14 @@ const ShipForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-y-8"
+        className="flex flex-col gap-y-5 lg:gap-y-8"
       >
-        <div className="flex items-center gap-x-5.5">
+        <div className="flex lg:flex-row flex-col items-center gap-5.5">
           <FormField
             control={form.control}
             name="firstName"
             render={({ field }) => (
-              <FormItem className="w-full gap-y-3">
+              <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
                 <FormLabel>First Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your First Name" {...field} />
@@ -71,7 +71,7 @@ const ShipForm = () => {
             control={form.control}
             name="lastName"
             render={({ field }) => (
-              <FormItem className="w-full gap-y-3">
+              <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
                 <FormLabel>Last Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your Last Name" {...field} />
@@ -86,7 +86,7 @@ const ShipForm = () => {
           control={form.control}
           name="location"
           render={({ field }) => (
-            <FormItem className="w-full gap-y-3">
+            <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
               <FormLabel>Location</FormLabel>
               <FormControl>
                 <Input placeholder="Enter your Location" {...field} />
@@ -96,12 +96,12 @@ const ShipForm = () => {
           )}
         />
 
-        <div className="flex items-center gap-x-5.5">
+        <div className="flex lg:flex-row flex-col items-center gap-5.5">
           <FormField
             control={form.control}
             name="city"
             render={({ field }) => (
-              <FormItem className="w-full gap-y-3">
+              <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
                 <FormLabel>City</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your city" {...field} />
@@ -115,7 +115,7 @@ const ShipForm = () => {
             control={form.control}
             name="state"
             render={({ field }) => (
-              <FormItem className="w-full gap-y-3">
+              <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
                 <FormLabel>State</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your state" {...field} />
@@ -129,7 +129,7 @@ const ShipForm = () => {
             control={form.control}
             name="postalCode"
             render={({ field }) => (
-              <FormItem className="w-full gap-y-3">
+              <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
                 <FormLabel>Postal Code</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your Postal Code" {...field} />
@@ -140,12 +140,12 @@ const ShipForm = () => {
           />
         </div>
 
-        <div className="flex items-center gap-x-5.5">
+        <div className="flex lg:flex-row flex-col items-center gap-5.5">
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem className="w-full gap-y-3">
+              <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your Email" {...field} />
@@ -159,7 +159,7 @@ const ShipForm = () => {
             control={form.control}
             name="phone"
             render={({ field }) => (
-              <FormItem className="w-full gap-y-3">
+              <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
                 <FormLabel>Phone Number</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your phone" {...field} />

@@ -8,19 +8,19 @@ import PickupForm from "./pickup-form";
 
 const DeliveryForm = () => {
   return (
-    <div>
-      <p className={`font-bold text-lg text-neutral-600 leading-[150%]`}>
+    <div className="px-5 lg:px-0">
+      <p className={`font-bold text-base lg:text-lg text-neutral-600 leading-[150%]`}>
         Delivery Option
       </p>
-      <Tabs defaultValue="ship" className="w-full my-10">
-        <TabsList className="mb-8 w-full">
+      <Tabs defaultValue="ship" className="w-full my-5 lg:my-10">
+        <TabsList className="mb-5 lg:mb-8 w-full">
           <TabsTrigger value="ship">
             <BusIcon stroke="currentColor"/>
-            <span className="font-normal text-base ">Ship</span>
+            <span className="font-normal lg:text-base text-sm">Ship</span>
           </TabsTrigger>
           <TabsTrigger value="pickup">
             <Location stroke="currentColor"/>
-            <span className="font-normal text-base ">Pick Up</span>
+            <span className="font-normal lg:text-base text-sm">Pick Up</span>
           </TabsTrigger>
         </TabsList>
         <TabsContent value="ship" >

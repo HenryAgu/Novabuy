@@ -53,15 +53,15 @@ const PickupForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-y-8"
+        className="flex flex-col gap-y-5 lg:gap-y-8"
       >
-        <div className="flex items-center gap-x-5.5">
+        <div className="flex flex-col lg:flex-row items-center gap-5.5">
           {/* First Name */}
           <FormField<z.infer<typeof formSchema>, "firstName">
             control={form.control}
             name="firstName"
             render={({ field }) => (
-              <FormItem className="w-full gap-y-3">
+              <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
                 <FormLabel>First Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your First Name" {...field} />
@@ -76,7 +76,7 @@ const PickupForm = () => {
             control={form.control}
             name="lastName"
             render={({ field }) => (
-              <FormItem className="w-full gap-y-3">
+              <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
                 <FormLabel>Last Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your Last Name" {...field} />
@@ -100,13 +100,13 @@ const PickupForm = () => {
             </FormItem>
           )}
         />
-        <div className="flex items-center gap-x-5.5">
+        <div className="flex flex-col lg:flex-row items-center gap-5.5">
           {/* Email */}
           <FormField<z.infer<typeof formSchema>, "email">
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem className="w-full gap-y-3">
+              <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your Email" {...field} />
@@ -121,7 +121,7 @@ const PickupForm = () => {
             control={form.control}
             name="phone"
             render={({ field }) => (
-              <FormItem className="w-full gap-y-3">
+              <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
                 <FormLabel>Phone Number</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your phone" {...field} />
