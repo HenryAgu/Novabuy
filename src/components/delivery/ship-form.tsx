@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Input } from "../ui/input";
 import {
@@ -15,51 +16,44 @@ import { Button } from "../ui/button";
 
 // ✅ Schema
 const formSchema = z.object({
-  firstName: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  email: z
-    .string()
-    .min(1, { message: "Email is required." })
-    .email({ message: "Invalid email address." }),
-  lastName: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-    phone: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  location: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  password: z
-    .string()
-    .min(8, { message: "Password must be at least 8 characters." }),
+  firstName: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().min(1, { message: "Email is required." }).email({ message: "Invalid email address." }),
+  lastName: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  city: z.string().min(2, { message: "City must be at least 2 characters." }),
+  state: z.string().min(2, { message: "State must be at least 2 characters." }),
+  postalCode: z.string().min(2, { message: "Postal code must be at least 2 characters." }),
+  phone: z.string().min(2, { message: "Phone number must be at least 2 characters." }),
+  location: z.string().min(2, { message: "Location must be at least 2 characters." }),
 });
-
-const onSubmit = async (data: z.infer<typeof formSchema>) => {};
 
 const ShipForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       firstName: "",
-      email: "",
-      phone: "",
       lastName: "",
       location: "",
-      password: "",
+      city: "",
+      state: "",
+      postalCode: "",
+      email: "",
+      phone: "",
     },
   });
+
+  // ✅ Move onSubmit here so it’s in the same scope as the form
+  const onSubmit = (data: z.infer<typeof formSchema>) => {
+    console.log("shipping data", data);
+  };
+
   return (
     <Form {...form}>
       <form
-        action=""
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-y-8"
       >
         <div className="flex items-center gap-x-5.5">
-          {/* First Name */}
-          <FormField<z.infer<typeof formSchema>, "firstName">
+          <FormField
             control={form.control}
             name="firstName"
             render={({ field }) => (
@@ -73,8 +67,7 @@ const ShipForm = () => {
             )}
           />
 
-          {/* Last Name */}
-          <FormField<z.infer<typeof formSchema>, "lastName">
+          <FormField
             control={form.control}
             name="lastName"
             render={({ field }) => (
@@ -88,8 +81,8 @@ const ShipForm = () => {
             )}
           />
         </div>
-        {/* Location */}
-        <FormField<z.infer<typeof formSchema>, "location">
+
+        <FormField
           control={form.control}
           name="location"
           render={({ field }) => (
@@ -102,9 +95,53 @@ const ShipForm = () => {
             </FormItem>
           )}
         />
+
         <div className="flex items-center gap-x-5.5">
-          {/* Email */}
-          <FormField<z.infer<typeof formSchema>, "email">
+          <FormField
+            control={form.control}
+            name="city"
+            render={({ field }) => (
+              <FormItem className="w-full gap-y-3">
+                <FormLabel>City</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter your city" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="state"
+            render={({ field }) => (
+              <FormItem className="w-full gap-y-3">
+                <FormLabel>State</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter your state" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="postalCode"
+            render={({ field }) => (
+              <FormItem className="w-full gap-y-3">
+                <FormLabel>Postal Code</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter your Postal Code" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="flex items-center gap-x-5.5">
+          <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
@@ -118,13 +155,12 @@ const ShipForm = () => {
             )}
           />
 
-          {/* Phone */}
-          <FormField<z.infer<typeof formSchema>, "phone">
+          <FormField
             control={form.control}
             name="phone"
             render={({ field }) => (
               <FormItem className="w-full gap-y-3">
-                <FormLabel>Phone</FormLabel>
+                <FormLabel>Phone Number</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your phone" {...field} />
                 </FormControl>
@@ -133,7 +169,14 @@ const ShipForm = () => {
             )}
           />
         </div>
-        <Button className="p-2.5 mt-5 rounded-[50px] bg-primary-500 text-white text-base font-normal cursor-pointer">Save & Continue</Button>
+
+        <Button
+          type="submit"
+          variant="default"
+          className="p-2.5 mt-5 rounded-[50px] bg-primary-500 text-white text-base font-normal cursor-pointer"
+        >
+          Save & Continue
+        </Button>
       </form>
     </Form>
   );
