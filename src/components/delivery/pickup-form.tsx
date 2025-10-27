@@ -12,20 +12,15 @@ import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../ui/button";
+import Info from "../icons/info";
 
 // ✅ Schema
 const formSchema = z.object({
-  firstName: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
   email: z
     .string()
     .min(1, { message: "Email is required." })
     .email({ message: "Invalid email address." }),
-  lastName: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-    phone: z.string().min(2, {
+  phone: z.string().min(2, {
     message: "Name must be at least 2 characters.",
   }),
   location: z.string().min(2, {
@@ -37,16 +32,14 @@ const PickupForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: "",
       email: "",
       phone: "",
-      lastName: "",
       location: "",
     },
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log("pick up form",data)
+    console.log("pick up form", data);
   };
 
   return (
@@ -55,51 +48,29 @@ const PickupForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-y-5 lg:gap-y-8"
       >
-        <div className="flex flex-col lg:flex-row items-center gap-5.5">
-          {/* First Name */}
-          <FormField<z.infer<typeof formSchema>, "firstName">
-            control={form.control}
-            name="firstName"
-            render={({ field }) => (
-              <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
-                <FormLabel>First Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your First Name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Last Name */}
-          <FormField<z.infer<typeof formSchema>, "lastName">
-            control={form.control}
-            name="lastName"
-            render={({ field }) => (
-              <FormItem className="w-full gap-y-1.5 lg:gap-y-3">
-                <FormLabel>Last Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your Last Name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
         {/* Location */}
-        <FormField<z.infer<typeof formSchema>, "location">
-          control={form.control}
-          name="location"
-          render={({ field }) => (
-            <FormItem className="w-full gap-y-3">
-              <FormLabel>Location</FormLabel>
-              <FormControl>
-                <Input placeholder="Enter your Location" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="flex flex-col gap-y-3">
+          <FormField<z.infer<typeof formSchema>, "location">
+            control={form.control}
+            name="location"
+            render={({ field }) => (
+              <FormItem className="w-full gap-y-3">
+                <FormLabel>Select Store Location</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter your Location" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="flex items-center gap-x-1.5 lg:gap-x-3">
+            <Info/>
+            <span className="text-sm lg:text-base text-neutral-300 font-normal">
+              Using a specific location such as a home address or postcode will
+              get the most accurate results.
+            </span>
+          </div>
+        </div>
         <div className="flex flex-col lg:flex-row items-center gap-5.5">
           {/* Email */}
           <FormField<z.infer<typeof formSchema>, "email">
@@ -131,7 +102,12 @@ const PickupForm = () => {
             )}
           />
         </div>
-        <Button type="submit" className="p-2.5 mt-5 rounded-[50px] bg-primary-500 text-white text-base font-normal cursor-pointer">Save & Continue</Button>
+        <Button
+          type="submit"
+          className="p-2.5 mt-5 rounded-[50px] bg-primary-500 text-white text-base font-normal cursor-pointer"
+        >
+          Save & Continue
+        </Button>
       </form>
     </Form>
   );
