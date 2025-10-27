@@ -64,7 +64,7 @@ const PickupForm = () => {
             )}
           />
           <div className="flex items-center gap-x-1.5 lg:gap-x-3">
-            <Info/>
+            <Info className="flex shrink-0"/>
             <span className="text-sm lg:text-base text-neutral-300 font-normal">
               Using a specific location such as a home address or postcode will
               get the most accurate results.
