@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { usePaystackPayment } from "react-paystack";
 import Image from "next/image";
 import { toast } from "sonner";
+import { useCartStore } from "@/stores/cart-stores";
 
 interface PaymentOption {
   src: string;
@@ -26,6 +27,8 @@ const PaymentForm = () => {
     { src: "/images/paypal.webp", type: "paypal", alt: "pay-pal", width: 25, height: 30 },
     { src: "/images/american-express.webp", type: "american-express", alt: "american-express", width: 30, height: 20 },
   ];
+
+  const {clearCart} = useCartStore();
 
   const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY ?? "";
 
@@ -58,10 +61,10 @@ const PaymentForm = () => {
     initializePayment({
       onSuccess: (response: any) => {
         console.log("Payment successful:", response);
+        clearCart();
         toast.success("Payment successful!");
       },
       onClose: () => {
-        console.log("Payment window closed");
         toast.error("Payment window closed");
       },
     });
