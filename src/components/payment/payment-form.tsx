@@ -3,6 +3,14 @@ import React from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 
+interface paymentOptions{
+  src: string;
+  type: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
 const PaymentForm = () => {
   const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_TEST_KEY;
 

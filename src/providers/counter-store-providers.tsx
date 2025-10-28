@@ -1,39 +1,28 @@
-// src/providers/counter-store-provider.tsx
 'use client'
 
-import { type ReactNode, createContext, useRef, useContext } from 'react'
+import { type ReactNode, createContext, useContext, useMemo } from 'react'
 import { useStore } from 'zustand'
-
 import { type CounterStore, createCounterStore } from '@/stores/counter-store'
 
 export type CounterStoreApi = ReturnType<typeof createCounterStore>
 
-export const CounterStoreContext = createContext<CounterStoreApi | undefined>(
-  undefined,
-)
+export const CounterStoreContext = createContext<CounterStoreApi | undefined>(undefined)
 
 export interface CounterStoreProviderProps {
   children: ReactNode
 }
 
-export const CounterStoreProvider = ({
-  children,
-}: CounterStoreProviderProps) => {
-  const storeRef = useRef<CounterStoreApi | null>(null)
-  if (storeRef.current === null) {
-    storeRef.current = createCounterStore()
-  }
+export const CounterStoreProvider = ({ children }: CounterStoreProviderProps) => {
+  const store = useMemo(() => createCounterStore(), [])
 
   return (
-    <CounterStoreContext.Provider value={storeRef.current}>
+    <CounterStoreContext.Provider value={store}>
       {children}
     </CounterStoreContext.Provider>
   )
 }
 
-export const useCounterStore = <T,>(
-  selector: (store: CounterStore) => T,
-): T => {
+export const useCounterStore = <T,>(selector: (store: CounterStore) => T): T => {
   const counterStoreContext = useContext(CounterStoreContext)
 
   if (!counterStoreContext) {

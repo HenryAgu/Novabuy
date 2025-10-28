@@ -8,6 +8,7 @@ import ImageUpload from "@/components/image-upload/image-upload";
 import { Spinner } from "@/components/status/spinner";
 import Link from "next/link";
 import { useProducts } from "@/components/context/products-context";
+import Image from "next/image";
 
 interface Product {
   id: string;
@@ -28,23 +29,27 @@ const EditProductPage = () => {
   const productId = searchParams.get("id");
 
   useEffect(() => {
-    if (!productId) {
-      toast.error("No product ID provided");
-      router.push("/dashboard/view-product");
-      return;
-    }
+    const fetchProduct = () => {
+      if (!productId) {
+        toast.error("No product ID provided");
+        router.push("/dashboard/view-product");
+        return;
+      }
 
-    const productData = getProductById(productId);
+      const productData = getProductById(productId);
 
-    if (!productData) {
-      toast.error("Product not found");
-      router.push("/dashboard/view-product");
-      return;
-    }
+      if (!productData) {
+        toast.error("Product not found");
+        router.push("/dashboard/view-product");
+        return;
+      }
 
-    setProduct(productData);
-    setImageUrl(productData.image || "");
-    setFetching(false);
+      setProduct(productData);
+      setImageUrl(productData.image || "");
+      setFetching(false);
+    };
+
+    fetchProduct();
   }, [productId, router, getProductById]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -90,7 +95,7 @@ const EditProductPage = () => {
       <div className="flex items-center justify-center h-screen">
         <div className="text-center">
           <p className="text-lg text-gray-600">Product not found</p>
-          <Link 
+          <Link
             href="/dashboard/view-product"
             className="mt-4 inline-block bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
           >
@@ -107,7 +112,7 @@ const EditProductPage = () => {
         <p className="text-black font-bold text-lg lg:text-[26px] lg:leading-[150%]">
           EDIT PRODUCT
         </p>
-        <Link 
+        <Link
           href="/dashboard/view-product"
           className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
         >
@@ -136,16 +141,20 @@ const EditProductPage = () => {
           {product.image && (
             <div className="mb-2">
               <p className="text-sm text-gray-600 mb-2">Current image:</p>
-              <img 
-                src={product.image} 
-                alt="Current product" 
+              <Image
+                src={product.image}
+                alt="Current product"
+                width={128}
+                height={128}
                 className="w-32 h-32 object-cover rounded border"
               />
             </div>
           )}
           <ImageUpload onUpload={setImageUrl} />
           <p className="text-sm text-gray-500">
-            {imageUrl ? "New image selected" : "Upload a new image or keep current"}
+            {imageUrl
+              ? "New image selected"
+              : "Upload a new image or keep current"}
           </p>
         </div>
 
