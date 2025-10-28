@@ -14,21 +14,21 @@ const WhoFor = ({title}:WhoForProps) => {
   const categories = [
     {
       id: "men",
-      name: "men",
+      name: "clothing",
       image: "/images/item1.png",
       link: "/products/men",
     },
     {
-      id: "women", 
-      name: "women",
-      image: "/images/item2.png",
-      link: "/products/women",
+      id: "shoes", 
+      name: "shoes",
+      image: "/images/shoe2.png",
+      link: "/products/shoes",
     },
     {
-      id: "kids",
-      name: "Kids",
-      image: "/images/item3.png",
-      link: "/products/kids",
+      id: "accessories",
+      name: "accessories",
+      image: "/images/item4.png",
+      link: "/products/accessories",
     },
   ];
 

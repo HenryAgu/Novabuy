@@ -19,30 +19,18 @@ interface NavMenu {
 }
 
 const navMenu: NavMenu[] = [
-  // {
-  //   name: "New",
-  //   link: "/new",
-  // },
   {
     name: "Men",
     link: "/products/men",
   },
-  // {
-  //   name: "Women",
-  //   link: "/women",
-  // },
-  // {
-  //   name: "Kids",
-  //   link: "/kids",
-  // },
   {
     name: "Shoes",
     link: "/products/shoes",
   },
-  // {
-  //   name: "Accessories",
-  //   link: "/accessories",
-  // },
+  {
+    name: "Accessories",
+    link: "/products/accessories",
+  },
 ];
 
 const Navbar = () => {
