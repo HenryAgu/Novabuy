@@ -24,7 +24,7 @@ const ShoePage = () => {
   };
   
   return (
-    <main className="lg:px-24 lg:py-8 px-5 py-8 overflow-x-hidden">
+    <main className="lg:px-24 lg:py-8 px-5 py-8 overflow-x-hidden min-h-screen">
       <div className="flex items-center justify-between">
         <span className="text-neutral-600 font-bold text-lg lg:text-[26px] lg:leading-[150%]">
           Shoes

@@ -70,7 +70,7 @@ const NovabuyNews = () => {
         }}
         plugins={[
           Autoplay({
-            delay: 2000,
+            delay: 8000,
           }),
         ]}
       >

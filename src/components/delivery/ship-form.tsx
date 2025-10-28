@@ -13,17 +13,31 @@ import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../ui/button";
+import { redirect } from "next/navigation";
 
 // ✅ Schema
 const formSchema = z.object({
-  firstName: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().min(1, { message: "Email is required." }).email({ message: "Invalid email address." }),
-  lastName: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  firstName: z
+    .string()
+    .min(2, { message: "Name must be at least 2 characters." }),
+  email: z
+    .string()
+    .min(1, { message: "Email is required." })
+    .email({ message: "Invalid email address." }),
+  lastName: z
+    .string()
+    .min(2, { message: "Name must be at least 2 characters." }),
   city: z.string().min(2, { message: "City must be at least 2 characters." }),
   state: z.string().min(2, { message: "State must be at least 2 characters." }),
-  postalCode: z.string().min(2, { message: "Postal code must be at least 2 characters." }),
-  phone: z.string().min(2, { message: "Phone number must be at least 2 characters." }),
-  location: z.string().min(2, { message: "Location must be at least 2 characters." }),
+  postalCode: z
+    .string()
+    .min(2, { message: "Postal code must be at least 2 characters." }),
+  phone: z
+    .string()
+    .min(2, { message: "Phone number must be at least 2 characters." }),
+  location: z
+    .string()
+    .min(2, { message: "Location must be at least 2 characters." }),
 });
 
 const ShipForm = () => {
@@ -44,6 +58,8 @@ const ShipForm = () => {
   // ✅ Move onSubmit here so it’s in the same scope as the form
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log("shipping data", data);
+    localStorage.setItem("shipping-details", JSON.stringify(data));
+    redirect("/payment");
   };
 
   return (

@@ -4,11 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const rubik = Rubik({
-  variable: "--font-rubik",
-  subsets: ["latin"],
-});
-
 const AdminPage = () => {
   return (
     <div className="px-5 py-8 lg:px-20 lg:py-13 min-h-screen lg:h-full">

@@ -164,7 +164,7 @@ const CollectionSection = () => {
           </AccordionTrigger>
           <AccordionContent className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
             {collections.map((item) => (
-              <div className="flex items-center gap-x-[11px]">
+              <div className="flex items-center gap-x-[11px]" key={item.id}>
                 <Checkbox />
                 <p
                   className={`${rubik.className} text-base text-neutral-600 font-normal leading-[150%]`}

@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../ui/button";
 import Info from "../icons/info";
+import { redirect } from "next/navigation";
 
 // ✅ Schema
 const formSchema = z.object({
@@ -40,6 +41,8 @@ const PickupForm = () => {
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     console.log("pick up form", data);
+    localStorage.setItem("pickup-details",JSON.stringify(data))
+    redirect("/payment")
   };
 
   return (

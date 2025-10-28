@@ -13,9 +13,10 @@ const rubik = Rubik({
 const SummaryItems = () => {
       const { getTotalPrice, getTotalItems } = useCartStore((state) => state);
       const subtotal = getTotalPrice();
-      const shipping = subtotal > 0 ? 4500 : 0; // Free shipping threshold logic
-      const taxes = 0; // No taxes for now
+      const shipping = subtotal > 0 ? 4500 : 0;
+      const taxes = 0;
       const total = subtotal + shipping + taxes;
+      localStorage.setItem("total",JSON.stringify(total))
        const totalItems = getTotalItems();
   return (
     <div className="px-5 lg:px-0">

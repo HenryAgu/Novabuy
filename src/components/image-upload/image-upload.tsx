@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useState, useCallback } from "react";
 
 interface ImageUploadProps {
@@ -56,9 +57,11 @@ function ImageUpload({ onUpload }: ImageUploadProps) {
       )}
 
       {image && (
-        <img
+        <Image
           src={image}
           alt="Uploaded preview"
+          width={192}
+          height={192}
           className="w-48 h-48 object-cover rounded"
         />
       )}
