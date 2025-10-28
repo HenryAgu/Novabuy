@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { usePaystackPayment } from "react-paystack";
 import Image from "next/image";
@@ -28,32 +28,32 @@ const PaymentForm = () => {
   ];
 
   const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY ?? "";
-  const [customer, setCustomer] = useState<CustomerDetails | null>(null);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
 
-  // ✅ Get customer details & total from localStorage
-  useEffect(() => {
-    const storedCustomer = localStorage.getItem("customer-details");
-    if (storedCustomer) {
-      setCustomer(JSON.parse(storedCustomer));
+  // ✅ Initialize from localStorage safely (only runs on client)
+  const [customer] = useState<CustomerDetails | null>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("customer-details");
+      return stored ? JSON.parse(stored) : null;
     }
+    return null;
+  });
 
-    const total = localStorage.getItem("total");
-    if (total) {
-      setTotalPrice(JSON.parse(total));
+  const [totalPrice] = useState<number>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("total");
+      return stored ? JSON.parse(stored) : 0;
     }
-  }, []);
+    return 0;
+  });
 
-  // ✅ Paystack Config
   const config = {
     email: customer?.email ?? "no-email@example.com",
-    amount: (totalPrice || 0) * 100, // Paystack needs amount in kobo
+    amount: (totalPrice || 0) * 100, // Paystack expects amount in kobo
     publicKey,
   };
 
   const initializePayment = usePaystackPayment(config);
 
-  // ✅ Handle payment
   const handlePay = () => {
     initializePayment({
       onSuccess: (response: any) => {
