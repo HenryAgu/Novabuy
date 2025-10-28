@@ -21,34 +21,10 @@ interface CustomerDetails {
 
 const PaymentForm = () => {
   const paymentOptions: PaymentOption[] = [
-    {
-      src: "/images/mastercard.webp",
-      type: "mastercard",
-      alt: "master-card",
-      width: 36,
-      height: 28,
-    },
-    {
-      src: "/images/visa.webp",
-      type: "visa",
-      alt: "visa",
-      width: 45,
-      height: 15,
-    },
-    {
-      src: "/images/paypal.webp",
-      type: "paypal",
-      alt: "pay-pal",
-      width: 25,
-      height: 30,
-    },
-    {
-      src: "/images/american-express.webp",
-      type: "american-express",
-      alt: "american-express",
-      width: 30,
-      height: 20,
-    },
+    { src: "/images/mastercard.webp", type: "mastercard", alt: "master-card", width: 36, height: 28 },
+    { src: "/images/visa.webp", type: "visa", alt: "visa", width: 45, height: 15 },
+    { src: "/images/paypal.webp", type: "paypal", alt: "pay-pal", width: 25, height: 30 },
+    { src: "/images/american-express.webp", type: "american-express", alt: "american-express", width: 30, height: 20 },
   ];
 
   const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY ?? "";
@@ -68,34 +44,32 @@ const PaymentForm = () => {
     }
   }, []);
 
-  // ✅ Loading state
-  if (!customer) {
-    return <p className="text-gray-500 text-sm">Loading customer details...</p>;
-  }
-
   // ✅ Paystack Config
   const config = {
-    email: customer.email,
-    amount: totalPrice * 100, 
+    email: customer?.email ?? "no-email@example.com",
+    amount: (totalPrice || 0) * 100, // Paystack needs amount in kobo
     publicKey,
   };
 
   const initializePayment = usePaystackPayment(config);
 
   // ✅ Handle payment
-const handlePay = () => {
-  initializePayment({
-    onSuccess: (response: any) => {
-      console.log("Payment successful:", response);
-      toast.success("Payment successful!");
-    },
-    onClose: () => {
-      console.log("Payment window closed");
-      toast.error("Payment window closed");
-    },
-  });
-};
+  const handlePay = () => {
+    initializePayment({
+      onSuccess: (response: any) => {
+        console.log("Payment successful:", response);
+        toast.success("Payment successful!");
+      },
+      onClose: () => {
+        console.log("Payment window closed");
+        toast.error("Payment window closed");
+      },
+    });
+  };
 
+  if (!customer) {
+    return <p className="text-gray-500 text-sm">Loading customer details...</p>;
+  }
 
   return (
     <div className="px-5 lg:px-0">
@@ -107,7 +81,6 @@ const handlePay = () => {
         <p>How would you like to pay?</p>
 
         <div className="flex items-center gap-x-2.5 my-5 flex-wrap">
-          
           {/* ✅ Custom Paystack Image Button */}
           <Button
             onClick={handlePay}
@@ -122,6 +95,7 @@ const handlePay = () => {
               className="object-contain"
             />
           </Button>
+
           {paymentOptions.map((option, index) => (
             <Button
               key={index}
