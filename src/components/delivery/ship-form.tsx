@@ -58,7 +58,7 @@ const ShipForm = () => {
   // ✅ Move onSubmit here so it’s in the same scope as the form
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log("shipping data", data);
-    localStorage.setItem("shipping-details", JSON.stringify(data));
+    localStorage.setItem("customer-details", JSON.stringify(data));
     redirect("/payment");
   };
 

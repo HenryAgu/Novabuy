@@ -41,7 +41,7 @@ const PickupForm = () => {
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     console.log("pick up form", data);
-    localStorage.setItem("pickup-details",JSON.stringify(data))
+    localStorage.setItem("customer-details",JSON.stringify(data))
     redirect("/payment")
   };
 
