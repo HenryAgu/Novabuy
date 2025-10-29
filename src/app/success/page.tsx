@@ -86,7 +86,7 @@ const SuccessPage = () => {
                       key={index}
                       className="border-b border-[#E0E0E0] border-dotted"
                     >
-                      <td className="py-3 text-xs align-top">Item</td>
+                      <td className="py-3 text-xs align-top">Item {index + 1}</td>
                       <td className="py-3 text-black text-xs text-right font-medium w-[70%] capitalize">
                         {item.name || item.productName} <br />
                         (qty: {item.quantity || "--"}) <br />
