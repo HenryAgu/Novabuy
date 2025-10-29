@@ -83,12 +83,12 @@ const PaymentForm = () => {
       <div className="my-5">
         <p>How would you like to pay?</p>
 
-        <div className="flex items-center gap-x-2.5 my-5 flex-wrap">
+        <div className="flex items-center gap-1 lg:gap-2.5 my-5 flex-wrap">
           {/* ✅ Custom Paystack Image Button */}
           <Button
             onClick={handlePay}
             variant="ghost"
-            className="border border-[#E9E9E9] hover:border-primary-500 hover:bg-[#EFEFFE] w-[106px] h-[57px] flex items-center justify-center"
+            className="border border-[#E9E9E9] hover:border-primary-500 hover:bg-[#EFEFFE] w-[70px] h-[40px] lg:w-[106px] lg:h-[57px] flex items-center justify-center"
           >
             <Image
               src="/images/paystack.webp"

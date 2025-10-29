@@ -32,7 +32,7 @@ export default function Home() {
       <div className="min-h-screen">
         <Hero />
         <Carousel />
-        <WhoFor title="WHO ARE YOU SHOPPING FOR?" />
+        <WhoFor title="WHAT ARE YOU SHOPPING FOR?" />
         <CarouselSectionProducts title="TRENDING PRODUCTS" />
         <FeaturedProducts />
         <SwiperProducts title="NEW PRODUCTS" />
