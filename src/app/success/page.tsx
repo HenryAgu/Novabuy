@@ -1,46 +1,45 @@
 "use client";
+
 import { CustomerDetails } from "@/components/payment/payment-form";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/stores/cart-stores";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const SuccessPage = () => {
   const router = useRouter();
   const { clearCart } = useCartStore();
-  const [customerItems, setCustomerItems] = useState<any[]>([]);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [customer, setCustomer] = useState<CustomerDetails | null>(null);
 
-  useEffect(() => {
+  // ✅ Initialize state directly from localStorage (no useEffect needed)
+  const [customerItems] = useState<any[]>(() => {
     if (typeof window !== "undefined") {
-      // 🛒 Load cart items
-      const storedItems = localStorage.getItem("customer-items");
-      if (storedItems) {
-        try {
-          setCustomerItems(JSON.parse(storedItems));
-        } catch (error) {
-          console.error("Error parsing customer items:", error);
-        }
-      }
-
-      // 💰 Load total price
-      const storedTotal = localStorage.getItem("total");
-      if (storedTotal) {
-        setTotalPrice(JSON.parse(storedTotal));
-      }
-
-      // 👤 Load customer details
-      const storedCustomer = localStorage.getItem("customer-details");
-      if (storedCustomer) {
-        setCustomer(JSON.parse(storedCustomer));
+      const stored = localStorage.getItem("customer-items");
+      try {
+        return stored ? JSON.parse(stored) : [];
+      } catch {
+        return [];
       }
     }
-  }, []);
+    return [];
+  });
 
-  // Return to shopping
+  const [totalPrice] = useState<number>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("total");
+      return stored ? JSON.parse(stored) : 0;
+    }
+    return 0;
+  });
+
+  const [customer] = useState<CustomerDetails | null>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("customer-details");
+      return stored ? JSON.parse(stored) : null;
+    }
+    return null;
+  });
+
   const handleContinueShopping = () => {
     router.push("/");
     clearCart();
@@ -79,14 +78,15 @@ const SuccessPage = () => {
           <div className="px-4 pt-4">
             <table className="w-full border-collapse text-sm">
               <tbody className="text-[#878787] font-normal leading-[150%]">
-                {/* 🛒 Mapped Items */}
                 {customerItems.length > 0 ? (
                   customerItems.map((item, index) => (
                     <tr
                       key={index}
                       className="border-b border-[#E0E0E0] border-dotted"
                     >
-                      <td className="py-3 text-xs align-top">Item {index + 1}</td>
+                      <td className="py-3 text-xs align-top">
+                        Item {index + 1}
+                      </td>
                       <td className="py-3 text-black text-xs text-right font-medium w-[70%] capitalize">
                         {item.name || item.productName} <br />
                         (qty: {item.quantity || "--"}) <br />
