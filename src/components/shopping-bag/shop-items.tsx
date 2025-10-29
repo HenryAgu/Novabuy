@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DeleteIcon from "../icons/delete-icon";
 import { Button } from "../ui/button";
 import Image from "next/image";
@@ -21,6 +21,10 @@ interface ItemProps {
 
 const ShopItems = () => {
   const items = useCartStore((state) => state.items);
+
+  useEffect(() => {
+    localStorage.setItem("customer-items", JSON.stringify(items));
+  }, [items]);
 
   return (
     <div className="basis-[50%] px-5 lg:px-0">

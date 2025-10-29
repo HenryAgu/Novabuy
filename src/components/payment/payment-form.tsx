@@ -6,6 +6,7 @@ import { usePaystackPayment } from "react-paystack";
 import Image from "next/image";
 import { toast } from "sonner";
 import { useCartStore } from "@/stores/cart-stores";
+import { useRouter } from "next/navigation";
 
 interface PaymentOption {
   src: string;
@@ -15,20 +16,44 @@ interface PaymentOption {
   height: number;
 }
 
-interface CustomerDetails {
+export interface CustomerDetails {
   email: string;
   name: string;
+  location?: string;
 }
 
 const PaymentForm = () => {
+  const router = useRouter();
   const paymentOptions: PaymentOption[] = [
-    { src: "/images/mastercard.webp", type: "mastercard", alt: "master-card", width: 36, height: 28 },
-    { src: "/images/visa.webp", type: "visa", alt: "visa", width: 45, height: 15 },
-    { src: "/images/paypal.webp", type: "paypal", alt: "pay-pal", width: 25, height: 30 },
-    { src: "/images/american-express.webp", type: "american-express", alt: "american-express", width: 30, height: 20 },
+    {
+      src: "/images/mastercard.webp",
+      type: "mastercard",
+      alt: "master-card",
+      width: 36,
+      height: 28,
+    },
+    {
+      src: "/images/visa.webp",
+      type: "visa",
+      alt: "visa",
+      width: 45,
+      height: 15,
+    },
+    {
+      src: "/images/paypal.webp",
+      type: "paypal",
+      alt: "pay-pal",
+      width: 25,
+      height: 30,
+    },
+    {
+      src: "/images/american-express.webp",
+      type: "american-express",
+      alt: "american-express",
+      width: 30,
+      height: 20,
+    },
   ];
-
-  const {clearCart} = useCartStore();
 
   const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY ?? "";
 
@@ -61,8 +86,8 @@ const PaymentForm = () => {
     initializePayment({
       onSuccess: (response: any) => {
         console.log("Payment successful:", response);
-        clearCart();
         toast.success("Payment successful!");
+        router.push("/success");
       },
       onClose: () => {
         toast.error("Payment window closed");

@@ -33,7 +33,7 @@ const AccessoriesPage = () => {
             ({accessories?.length} Products)
           </span>
         </span>
-        <div className="flex items-center gap-x-5.5">
+        <div className="flex items-center gap-x-1.5 lg:gap-x-5.5">
           <Sheet>
             <SheetTrigger className="cursor-pointer">Filter</SheetTrigger>
             <SideFilter />

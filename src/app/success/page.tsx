@@ -1,12 +1,55 @@
+"use client";
+import { CustomerDetails } from "@/components/payment/payment-form";
 import { Button } from "@/components/ui/button";
+import { useCartStore } from "@/stores/cart-stores";
 import Image from "next/image";
-import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 const SuccessPage = () => {
+  const router = useRouter();
+  const { clearCart } = useCartStore();
+  const [customerItems, setCustomerItems] = useState<any[]>([]);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [customer, setCustomer] = useState<CustomerDetails | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // 🛒 Load cart items
+      const storedItems = localStorage.getItem("customer-items");
+      if (storedItems) {
+        try {
+          setCustomerItems(JSON.parse(storedItems));
+        } catch (error) {
+          console.error("Error parsing customer items:", error);
+        }
+      }
+
+      // 💰 Load total price
+      const storedTotal = localStorage.getItem("total");
+      if (storedTotal) {
+        setTotalPrice(JSON.parse(storedTotal));
+      }
+
+      // 👤 Load customer details
+      const storedCustomer = localStorage.getItem("customer-details");
+      if (storedCustomer) {
+        setCustomer(JSON.parse(storedCustomer));
+      }
+    }
+  }, []);
+
+  // Return to shopping
+  const handleContinueShopping = () => {
+    router.push("/");
+    clearCart();
+  };
+
   return (
-    <main className="flex items-center justify-center h-screen px-5">
-      <div className=" max-w-full lg:max-w-[446px] px-6 lg:px-10.5 py-5 lg:py-8 border-[0.5px] border-[#E0E0E0] rounded-4xl shadow-[3px_3px_15px_0_rgba(209,209,209,0.3)] flex flex-col gap-y-8 bg-white">
-        {/* Success message */}
+    <main className="flex items-center justify-center min-h-screen px-5">
+      <div className="max-w-full lg:max-w-[446px] px-6 lg:px-10.5 py-5 lg:py-8 border-[0.5px] border-[#E0E0E0] rounded-4xl shadow-[3px_3px_15px_0_rgba(209,209,209,0.3)] flex flex-col gap-y-8 bg-white">
+        {/* ✅ Success Message */}
         <div className="flex flex-col items-center gap-y-3">
           <Image
             src="/images/check.svg"
@@ -25,7 +68,7 @@ const SuccessPage = () => {
           </div>
         </div>
 
-        {/* Order summary */}
+        {/* ✅ Order Summary */}
         <div className="border-[0.5px] border-[#E0E0E0] rounded-4xl py-6">
           <div className="pb-4 px-4 border-b border-[#E0E0E0]">
             <p className="text-base text-black font-semibold leading-[150%]">
@@ -36,31 +79,41 @@ const SuccessPage = () => {
           <div className="px-4 pt-4">
             <table className="w-full border-collapse text-sm">
               <tbody className="text-[#878787] font-normal leading-[150%]">
-                <tr className="border-b border-[#E0E0E0] border-dotted">
-                  <td className="py-3 text-xs ">Product Name</td>
-                  <td className="py-3 text-black text-xs text-right font-medium w-[80%]">
-                    Male Sport Shoe (Louis Vuitton)
-                  </td>
-                </tr>
+                {/* 🛒 Mapped Items */}
+                {customerItems.length > 0 ? (
+                  customerItems.map((item, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-[#E0E0E0] border-dotted"
+                    >
+                      <td className="py-3 text-xs align-top">Item</td>
+                      <td className="py-3 text-black text-xs text-right font-medium w-[70%] capitalize">
+                        {item.name || item.productName} <br />
+                        (qty: {item.quantity || "--"}) <br />
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={2} className="text-center py-3 text-xs">
+                      No items found.
+                    </td>
+                  </tr>
+                )}
 
+                {/* 📍 Location */}
                 <tr className="border-b border-[#E0E0E0] border-dotted">
-                  <td className="py-3 text-xs ">Price</td>
-                  <td className="py-3 text-black text-xs text-right font-medium">
-                    ₦ 5,600
-                  </td>
-                </tr>
-
-                <tr className="border-b border-[#E0E0E0] border-dotted">
-                  <td className="py-3 text-xs ">Category</td>
-                  <td className="py-3 text-black text-xs text-right font-medium">
-                    Shoes
-                  </td>
-                </tr>
-
-                <tr>
                   <td className="py-3 align-top text-xs">Location</td>
-                  <td className="py-3 text-black text-xs text-right font-medium leading-[150%]">
-                    Creed Lounge, Apara Road, <br /> Port Harcourt
+                  <td className="py-3 text-black text-xs text-right font-medium leading-[150%] capitalize">
+                    {customer?.location || "N/A"}
+                  </td>
+                </tr>
+
+                {/* 💰 Total */}
+                <tr>
+                  <td className="py-3 text-xs ">Total</td>
+                  <td className="py-3 text-black text-xs text-right font-medium">
+                    ₦ {totalPrice.toLocaleString()}
                   </td>
                 </tr>
               </tbody>
@@ -68,7 +121,11 @@ const SuccessPage = () => {
           </div>
         </div>
 
-        <Button className="w-fit mt-10 mx-auto rounded-3xl bg-primary-500 text-white tracking-tighter text-sm py-4 px-8 font-semibold leading-[150%]">
+        {/* 🛍️ Continue Button */}
+        <Button
+          onClick={handleContinueShopping}
+          className="w-fit mt-10 mx-auto rounded-3xl bg-primary-500 text-white tracking-tighter text-sm py-3 px-8 font-semibold leading-[150%]"
+        >
           Continue Shopping
         </Button>
       </div>
