@@ -21,26 +21,10 @@ interface FooterMenu {
 }
 
 const socialMenus: SocialMenu[] = [
-  {
-    image: "/icons/Twitter.svg",
-    link: "",
-    alt: "twitter",
-  },
-  {
-    image: "/icons/Facebook.svg",
-    link: "",
-    alt: "facebook",
-  },
-  {
-    image: "/icons/Youtube.svg",
-    link: "",
-    alt: "youtube",
-  },
-  {
-    image: "/icons/Instagram.svg",
-    link: "",
-    alt: "instagram",
-  },
+  { image: "/icons/Twitter.svg", link: "", alt: "twitter" },
+  { image: "/icons/Facebook.svg", link: "", alt: "facebook" },
+  { image: "/icons/Youtube.svg", link: "", alt: "youtube" },
+  { image: "/icons/Instagram.svg", link: "", alt: "instagram" },
 ];
 
 const getHelp: FooterMenu[] = [
@@ -74,6 +58,16 @@ const legal: FooterMenu[] = [
   { title: "Manage Policy", link: "" },
 ];
 
+const HoverLink = ({ title, link }: FooterMenu) => (
+  <Link
+    href={link}
+    className={`relative w-fit group ${rubik.className} text-sm lg:text-base font-normal`}
+  >
+    {title}
+    <span className="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
+  </Link>
+);
+
 const Footer = () => {
   return (
     <footer className="lg:px-24 lg:pt-20.5 px-5 py-10 bg-primary-500 flex flex-col gap-y-10">
@@ -83,13 +77,7 @@ const Footer = () => {
             <p className="font-bold text-lg leading-[150%]">Get Help</p>
             <div className="flex flex-col gap-y-2 lg:gap-y-4">
               {getHelp.map((item) => (
-                <Link
-                  href={item.link}
-                  key={item.title}
-                  className={`${rubik.className} text-sm lg:text-base font-normal`}
-                >
-                  {item.title}
-                </Link>
+                <HoverLink key={item.title} {...item} />
               ))}
             </div>
           </div>
@@ -99,13 +87,7 @@ const Footer = () => {
             </p>
             <div className="flex flex-col gap-y-2 lg:gap-y-4">
               {aboutNovabuy.map((item) => (
-                <Link
-                  href={item.link}
-                  key={item.title}
-                  className={`${rubik.className} text-base font-normal`}
-                >
-                  {item.title}
-                </Link>
+                <HoverLink key={item.title} {...item} />
               ))}
             </div>
           </div>
@@ -115,13 +97,7 @@ const Footer = () => {
             </p>
             <div className="flex flex-col gap-y-4">
               {storeLocator.map((item) => (
-                <Link
-                  href={item.link}
-                  key={item.title}
-                  className={`${rubik.className} text-base font-normal`}
-                >
-                  {item.title}
-                </Link>
+                <HoverLink key={item.title} {...item} />
               ))}
             </div>
           </div>
@@ -131,13 +107,7 @@ const Footer = () => {
             </p>
             <div className="flex flex-col gap-y-4">
               {legal.map((item) => (
-                <Link
-                  href={item.link}
-                  key={item.title}
-                  className={`${rubik.className} text-base font-normal`}
-                >
-                  {item.title}
-                </Link>
+                <HoverLink key={item.title} {...item} />
               ))}
             </div>
           </div>

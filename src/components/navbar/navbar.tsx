@@ -12,6 +12,7 @@ import ShopBag from "../shopping-bag/shop-bag";
 import { useCartStore } from "@/stores/cart-stores";
 import { DropdownMenu, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import AvatarDropdown from "./avatar-dropdown";
+import { usePathname } from "next/navigation";
 
 interface NavMenu {
   name?: string;
@@ -19,22 +20,14 @@ interface NavMenu {
 }
 
 const navMenu: NavMenu[] = [
-  {
-    name: "Men",
-    link: "/products/men",
-  },
-  {
-    name: "Shoes",
-    link: "/products/shoes",
-  },
-  {
-    name: "Accessories",
-    link: "/products/accessories",
-  },
+  { name: "Men", link: "/products/men" },
+  { name: "Shoes", link: "/products/shoes" },
+  { name: "Accessories", link: "/products/accessories" },
 ];
 
 const Navbar = () => {
   const totalItems = useCartStore((state) => state.items);
+  const pathname = usePathname();
 
   return (
     <nav className="flex items-center justify-between py-5 lg:py-6 px-5 lg:px-24">
@@ -49,17 +42,25 @@ const Navbar = () => {
       </Link>
 
       <ul className="hidden lg:flex items-center gap-12">
-        {navMenu.map((item) => (
-          <li key={item.name}>
-            <Link
-              href={item.link}
-              className="text-sm lg:text-base font-normal text-neutral-500"
-            >
-              {item.name}
-            </Link>
-          </li>
-        ))}
+        {navMenu.map((item) => {
+          const isActive = pathname === item.link;
+          return (
+            <li key={item.name}>
+              <Link
+                href={item.link}
+                className={`text-sm lg:text-base font-normal transition-colors duration-200 ${
+                  isActive
+                    ? "text-black font-semibold underline"
+                    : "text-neutral-500"
+                } hover:text-black hover:font-medium`}
+              >
+                {item.name}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
+
       <div className="flex items-center gap-2.5 lg:gap-5 relative">
         <Sheet>
           <SheetTrigger>
@@ -72,15 +73,18 @@ const Navbar = () => {
           </SheetTrigger>
           <ShopBag />
         </Sheet>
+
         <DropdownMenu>
           <DropdownMenuTrigger>
             <User />
           </DropdownMenuTrigger>
           <AvatarDropdown />
         </DropdownMenu>
+
         <button className="hidden lg:block">
           <SearchIcon />
         </button>
+
         <Sheet>
           <SheetTrigger className="lg:hidden">
             <MenuIcon />
@@ -97,6 +101,7 @@ const Navbar = () => {
 export default Navbar;
 
 const MobileMenu = () => {
+  const pathname = usePathname();
   return (
     <section className="p-5 flex flex-col gap-y-6 pb-10">
       <SheetClose className="flex justify-end">
@@ -104,16 +109,23 @@ const MobileMenu = () => {
       </SheetClose>
       <nav>
         <ul className="flex flex-col gap-6 text-lg">
-          {navMenu.map((item) => (
-            <li key={item.name}>
-              <Link
-                href={item.link}
-                className="text-sm font-normal text-neutral-500"
-              >
-                {item.name}
-              </Link>
-            </li>
-          ))}
+          {navMenu.map((item) => {
+            const isActive = pathname === item.link;
+            return (
+              <li key={item.name}>
+                <Link
+                  href={item.link}
+                  className={`text-sm font-normal transition-colors duration-200 ${
+                    isActive
+                      ? "text-black font-semibold underline"
+                      : "text-neutral-500"
+                  } hover:text-black hover:font-medium`}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </section>
