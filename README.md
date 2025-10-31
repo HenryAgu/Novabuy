@@ -5,6 +5,14 @@ NovaBuy is a modern e-commerce web application tailored for shoppers in Nigeria.
 ### Demo
 - Production URL: `https://novabuy-stores.vercel.app/`
 
+### Images
+<img width="1919" height="907" alt="Screenshot 2025-10-31 133617" src="https://github.com/user-attachments/assets/3e60a457-71e9-4de9-9e48-43adb6ed83ca" />
+<img width="1919" height="909" alt="Screenshot 2025-10-31 133602" src="https://github.com/user-attachments/assets/955a3dac-0b39-4c9a-86c8-dfd247bb284c" />
+<img width="1919" height="913" alt="Screenshot 2025-10-31 133549" src="https://github.com/user-attachments/assets/ce0a7035-843c-493f-bdf0-bb35032588f3" />
+<img width="1919" height="912" alt="Screenshot 2025-10-31 133537" src="https://github.com/user-attachments/assets/96dfd4eb-c09d-491b-8d3f-195b23f84edb" />
+
+
+
 ## Tech Stack
 - **Framework**: Next.js 15 (App Router, React 19)
 - **Language**: TypeScript
@@ -26,51 +34,6 @@ NovaBuy is a modern e-commerce web application tailored for shoppers in Nigeria.
 - **Responsive & accessible**: Components built on Radix primitives and Tailwind
 - **SEO**: Rich metadata, Open Graph, and Twitter cards set in root layout
 
-## Project Structure
-```
-src/
-  app/                   # Next.js App Router pages and layouts
-    products/            # Product category routes and dynamic [id]
-    dashboard/           # Admin dashboard (add/edit/view product)
-    auth/                # Auth routes and layout
-    payment/             # Checkout payment page
-    success/             # Post-payment success page
-  components/
-    ui/                  # Shadcn-style UI primitives (button, input, sheet, etc.)
-    products/            # Product details, skeletons, add-to-bag
-    shopping-bag/        # Cart UI
-    check-out/           # Checkout summary and total
-    payment/             # Payment form with Paystack trigger
-    context/             # Providers for auth and products
-    navbar/, footer.tsx  # Layout components
-  hooks/                 # Custom hooks (e.g., use-products)
-  lib/                   # Firebase config, utils
-  providers/             # Store providers for Zustand
-  stores/                # Zustand stores (cart, counter, auth)
-public/
-  images/                # Static images and SEO assets
-```
-
-## Environment Variables
-Create a `.env.local` file in the project root and provide the following keys. Do not commit this file.
-
-```bash
-# Firebase
-NEXT_PUBLIC_FIREBASE_API_KEY=...
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=...
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
-NEXT_PUBLIC_FIREBASE_APP_ID=...
-
-# Paystack
-NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY=pk_test_************************
-```
-
-Notes:
-- Firebase config is read in `src/lib/firebase.ts` and used to initialize Auth and Firestore.
-- Paystack public key is used in `src/components/payment/payment-form.tsx` to initialize `usePaystackPayment`.
-
 ## Getting Started (Local Development)
 
 1) Install dependencies (uses pnpm by default):
@@ -88,8 +51,6 @@ Then open `http://localhost:3000`.
 ```bash
 pnpm build && pnpm start
 ```
-
-## Key Workflows
 
 ### Authentication
 - Firebase Auth is initialized in `src/lib/firebase.ts` and provided via `AuthContextProvider` in `src/app/layout.tsx`.
@@ -138,19 +99,3 @@ pnpm build && pnpm start
 ## Assets & Branding
 - Images and icons reside in `public/` and `public/images/`.
 - Payment logos (Visa, MasterCard, PayPal, Paystack) are used in checkout UI.
-
-## Roadmap (Ideas)
-- Order history and receipts
-- Inventory management and stock levels
-- Reviews and ratings
-- Address book and delivery tracking
-
-## Contributing
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feat/your-feature`
-3. Commit changes: `git commit -m "feat: add your feature"`
-4. Push: `git push origin feat/your-feature`
-5. Open a Pull Request
-
-## License
-This project is proprietary to the NovaBuy team unless otherwise stated. Reach out to the maintainers for usage terms.
