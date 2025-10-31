@@ -20,7 +20,7 @@ import Eye from "../icons/eye";
 import EyeSlash from "../icons/eye-slash";
 import { useState } from "react";
 import { toast } from "sonner";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { UserAuth } from "../context/auth-context";
 
 // ✅ Schema
@@ -57,15 +57,12 @@ export function SignUpForm() {
   const { createUser } = UserAuth();
   const router = useRouter();
 
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect") || "/delivery";
-
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
       await createUser(data.email, data.password);
       toast.success("Account created successfully");
       form.reset();
-      router.push(redirect);
+      router.push("/delivery");
     } catch (error: unknown) {
       console.error(error);
       if (error instanceof Error) {
