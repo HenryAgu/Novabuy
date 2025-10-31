@@ -9,6 +9,7 @@ const Hero = () => {
         alt="hero_image"
         width={1199}
         height={437}
+        data-aos="zoom-in"
         className="aspect-[1199/437] mx-auto"
       />
       <div className="mt-10 lg:mt-20">

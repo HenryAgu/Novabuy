@@ -6,6 +6,7 @@ import { CartStoreProvider } from "@/providers/cart-store-providers";
 import { Toaster } from "@/components/ui/sonner";
 import { AuthContextProvider } from "@/components/context/auth-context";
 import { ProductsProvider } from "@/components/context/products-context";
+import AOSProvider from "@/components/aos-provider";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -68,6 +69,7 @@ export default function RootLayout({
         <CounterStoreProvider>
           <CartStoreProvider>
             <AuthContextProvider>
+              <AOSProvider/>
               <ProductsProvider>{children}</ProductsProvider>
             </AuthContextProvider>
           </CartStoreProvider>

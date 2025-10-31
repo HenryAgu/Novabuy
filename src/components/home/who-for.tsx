@@ -34,7 +34,7 @@ const WhoFor = ({title}:WhoForProps) => {
 
   return (
     <section className="px-5 lg:px-24 py-8 lg:py-15 flex flex-col gap-y-4 lg:gap-y-8">
-      <p className="text-black font-bold text-lg lg:text-[26px] lg:leading-[150%]">
+      <p className="text-black font-bold text-lg lg:text-[26px] lg:leading-[150%]" data-aos="fade-down">
         {title}
       </p>
       <div className="grid gap-5 lg:gap-2.5 grid-cols-1 lg:grid-cols-3">

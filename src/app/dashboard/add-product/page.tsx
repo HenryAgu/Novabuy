@@ -80,12 +80,11 @@ const AddProductPage = () => {
 
         <div className="flex flex-col gap-y-2">
           <label htmlFor="description">Description:</label>
-          <input
+          <textarea
             id="description"
-            type="text"
             name="description"
             placeholder="Enter product description"
-            className="border p-2 rounded"
+            className="border p-2 rounded resize-none w-full h-50"
           />
         </div>
 
